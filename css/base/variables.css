@@ -1,0 +1,18 @@
+/* --- CSS Variables & Design System --- */
+:root {
+  --clr-bg: #FFFFFF;
+  --clr-bg-alt: #F7F7F7;
+  --clr-text: #000000;
+  --clr-text-light: #555555;
+  --clr-accent: #333333; 
+  --clr-accent-hover: #000000;
+  --clr-champagne: #D1D1D1; /* Replaced with a cool light grey */
+  
+  --font-heading: 'Baskervville', serif;
+  --font-body: 'Inter', sans-serif;
+  --font-time: 'Cormorant Garamond', serif;
+  
+  --transition-smooth: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --glass-bg: rgba(255, 255, 255, 0.85);
+  --glass-border: rgba(0, 0, 0, 0.05);
+}

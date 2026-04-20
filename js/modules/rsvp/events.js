@@ -95,6 +95,18 @@ export function initRSVPEvents() {
         rsvpForm.addEventListener('submit', async (e) => {
             e.preventDefault();
             
+            // Only allow submission on the final step (Step 3)
+            if (rsvpState.step < 3) {
+                if (rsvpState.step === 1 && !btnNext1.disabled) {
+                    setStep(2);
+                    updateView();
+                } else if (rsvpState.step === 2 && !btnNext2.disabled) {
+                    setStep(3);
+                    updateView();
+                }
+                return;
+            }
+
             const btnSubmit = document.getElementById('btnSubmit');
             const origHtml = btnSubmit.innerHTML;
             btnSubmit.innerHTML = 'Sending...';

@@ -285,7 +285,9 @@ section {
   margin-bottom: 1.5rem;
   font-size: 1.1rem;
   color: var(--clr-text-light);
-  text-align: center;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .image-frame {

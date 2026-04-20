@@ -441,24 +441,24 @@ section {
   margin: 0.1rem 0 0.3rem 0;
 }
 
-/* --- Travel Section --- */
-.travel-grid {
+/* --- Accommodation Section --- */
+.accommodation-grid {
   margin-top: 4rem;
   align-items: flex-start;
 }
 
-.travel-heading {
+.accommodation-heading {
   font-size: 1.8rem;
   margin-bottom: 1rem;
 }
 
-.travel-desc {
+.accommodation-desc {
   color: var(--clr-text-light);
   font-size: 0.95rem;
   margin-bottom: 2.5rem;
 }
 
-.travel-item {
+.accommodation-item {
   margin-bottom: 2rem;
   padding: 1.5rem;
   border: 1px solid var(--clr-champagne);
@@ -467,20 +467,20 @@ section {
   transition: var(--transition-smooth);
 }
 
-.travel-item:hover {
+.accommodation-item:hover {
   border-color: var(--clr-accent);
   transform: translateY(-5px);
   box-shadow: 0 10px 20px rgba(0,0,0,0.05);
 }
 
-.travel-item h4 {
+.accommodation-item h4 {
   font-family: var(--font-body);
   font-weight: 600;
   font-size: 1.1rem;
   margin-bottom: 0.2rem;
 }
 
-.travel-link {
+.accommodation-link {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -492,7 +492,7 @@ section {
   margin-top: 0.5rem;
 }
 
-.travel-link:hover {
+.accommodation-link:hover {
   color: var(--clr-text-light);
   border-bottom-color: var(--clr-text-light);
 }
@@ -624,9 +624,27 @@ section {
   margin-bottom: 1rem;
 }
 
-.guide-card p {
+.guide-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.guide-list li {
   color: var(--clr-text-light);
   font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.guide-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--clr-accent);
 }
 
 .btn-outline {

@@ -16,7 +16,7 @@ function createMap() {
     const map = new google.maps.Map(mapElement, {
         zoom: 10,
         center: center,
-        mapId: 'wedding_map',
+        mapId: 'ed62f22d16ae036db6c63b63',
         disableDefaultUI: true,
         zoomControl: true,
         zoomControlOptions: {

@@ -311,10 +311,13 @@ section {
 
 /* --- About Section --- */
 .about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.about-image {
+  max-width: 500px;
+  margin: 3rem auto 0 auto;
 }
 
 .about-text p {
@@ -935,13 +938,11 @@ button:disabled {
 /* --- Responsive Design --- */
 @media (max-width: 900px) {
   .about-grid {
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    gap: 2rem;
   }
-  
+
   .about-image {
-    order: -1;
-    margin-bottom: 2rem;
+    max-width: 350px;
   }
   
   .hero h1 {
@@ -1001,7 +1002,7 @@ button:disabled {
 
   /* Adjust RSVP scroll position to center the form better on mobile */
   #rsvp {
-    scroll-margin-top: -40px;
+    scroll-margin-top: 0px;
   }
 
   .section-padding {

@@ -133,8 +133,8 @@ function updateStep3Displays() {
     const aW = rsvpState.formData.attendingWedding === 'yes';
     const aP = rsvpState.formData.attendingParty === 'yes';
     
-    const step3Title = document.querySelector('#rsvpStep3 .step-title');
-    const step3Subtitle = document.querySelector('#rsvpStep3 .step-subtitle');
+    const step3Title = document.querySelector('#rsvpStep3 .rsvp-step-title');
+    const step3Subtitle = document.querySelector('#rsvpStep3 .rsvp-step-subtitle');
     const dietaryField = document.querySelector('#rsvpDietary')?.parentElement;
 
     if (aW) dom.secWedding.classList.remove('hidden'); else dom.secWedding.classList.add('hidden');

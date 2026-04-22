@@ -28,7 +28,7 @@ export function initNavigation() {
                 item.classList.add('active');
             }
         });
-    });
+    }, { passive: true });
 
     // --- Mobile Hamburger Menu ---
     if (hamburger && navLinks) {
@@ -58,5 +58,3 @@ export function initNavigation() {
         });
     }
 }
-
-

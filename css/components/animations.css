@@ -58,3 +58,15 @@
     transform: translateX(0);
   }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in,
+  .slide-up,
+  .fade-in-dynamic,
+  .slide-in {
+    animation: none !important;
+    transition: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

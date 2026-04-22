@@ -283,11 +283,6 @@ textarea:focus {
   .rsvp-panel {
     padding: 2rem;
   }
-  
-  .radio-group {
-    flex-direction: column;
-    gap: 1rem;
-  }
 
   #rsvp {
     scroll-margin-top: 0px;

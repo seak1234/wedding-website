@@ -21,7 +21,6 @@ body {
   background-color: var(--clr-bg);
   color: var(--clr-text);
   line-height: 1.6;
-  user-select: none;
 }
 
 /* Re-enable selection for inputs, textareas, and specific informative text */

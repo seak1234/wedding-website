@@ -130,3 +130,12 @@ button:disabled {
   box-shadow: none;
   background-color: var(--clr-text);
 }
+
+#btnSubmit {
+  background-color: var(--clr-text);
+}
+
+#btnSubmit:hover,
+#btnSubmit:focus {
+  background-color: var(--clr-accent);
+}

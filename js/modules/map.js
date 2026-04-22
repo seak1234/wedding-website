@@ -86,10 +86,34 @@ function createMap() {
         preserveViewport: true,
         polylineOptions: {
             strokeColor: '#333',
-            strokeOpacity: 0.9,
-            strokeWeight: 4
+            strokeOpacity: 0, // Hide the main line to show the dashes
+            icons: [{
+                icon: {
+                    path: 'M 0,-1 0,1',
+                    strokeOpacity: 0.8,
+                    scale: 3,
+                    strokeWeight: 2
+                },
+                offset: '0',
+                repeat: '15px'
+            }]
         }
     });
+
+    // Animation for the dashed line
+    let count = 0;
+    function animateCircle() {
+        // Reduced increment speed for a calmer effect
+        count = (count + 0.5) % 200;
+        const icons = directionsRenderer.get('polylineOptions').icons;
+        // Adjusted the divisor to slow down the flow further
+        icons[0].offset = (count / 4) + 'px';
+        directionsRenderer.set('polylineOptions', {
+            ...directionsRenderer.get('polylineOptions'),
+            icons: icons
+        });
+        requestAnimationFrame(animateCircle);
+    }
 
     directionsService.route(
         {
@@ -104,6 +128,9 @@ function createMap() {
             }
 
             directionsRenderer.setDirections(result);
+            
+            // Start the animation once the route is rendered
+            animateCircle();
 
             // Keep the travel time badge in sync with the actual route.
             const durationText = result.routes?.[0]?.legs?.[0]?.duration?.text;

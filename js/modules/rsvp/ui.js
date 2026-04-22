@@ -207,8 +207,8 @@ export function renderGuestInputs(type) {
                 <span class="guest-input-number">
                     ${i + 1}.
                 </span>
-                <input type="text" id="guest-${type}-${i}" data-type="${type}" data-index="${i}" value="${namesArray[i] || ''}" placeholder="${i === 0 ? 'Your Name' : `Guest ${i+1} Name`}" required 
-                       class="guest-field" />
+                <input type="text" id="guest-${type}-${i}" data-type="${type}" data-index="${i}" value="${namesArray[i] || ''}" placeholder="${i === 0 ? 'Your Name' : `Guest ${i+1} Name`}" 
+                       autocomplete="name" required class="guest-field" />
             </div>
         `;
         const input = wrapper.querySelector('input');

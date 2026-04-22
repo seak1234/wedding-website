@@ -98,7 +98,10 @@ function createMap() {
             travelMode: google.maps.TravelMode.DRIVING
         },
         (result, status) => {
-            if (status !== 'OK' || !result) return;
+            if (status !== 'OK' || !result) {
+                console.error('Directions request failed due to ' + status);
+                return;
+            }
 
             directionsRenderer.setDirections(result);
 

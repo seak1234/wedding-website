@@ -106,6 +106,10 @@
   gap: 0.25em;
 }
 
+.hero-title .hero-word:nth-child(2) {
+  font-size: 0.8em;
+}
+
 .hero-date {
   font-family: var(--font-time);
   font-size: 1.5rem;

@@ -143,7 +143,7 @@ function updateStep3Displays() {
     if (!aW && !aP) {
         dom.secNone.classList.remove('hidden');
         if (step3Title) step3Title.innerText = 'Almost Done';
-        if (step3Subtitle) step3Subtitle.innerText = 'We\'re sorry you can\'t make it, but we\'d still love to hear from you.';
+        if (step3Subtitle) step3Subtitle.innerText = '';
         if (dietaryField) dietaryField.classList.add('hidden');
     } else {
         dom.secNone.classList.add('hidden');

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
         content="Wedding Website of Michelle Tuszewski & David Schnitzler - August 15th, 2026, Windsor, Ontario, Canada">
-    <title>David & Michelle | August 15, 2026</title>
+    <title>Michelle & David | August 15, 2026</title>
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
@@ -49,11 +49,11 @@
                 <li><a href="#local-guide">Local Guide</a></li>
                 <li><a href="#rsvp">RSVP</a></li>
             </ul>
-            <div class="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle navigation menu" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -70,11 +70,11 @@
                 <span class="hero-word">David</span>
             </h1>
             <p class="hero-date fade-in delay-2">
-                <!-- <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; margin-bottom: 3px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> -->
+                <!-- <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; margin-bottom: 3px;"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg> -->
                 August 15, 2026
             </p>
             <p class="hero-location fade-in delay-3">
-                <!-- <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; margin-bottom: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> -->
+                <!-- <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; margin-bottom: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> -->
                 Windsor, Ontario, Canada
             </p>
         </div>
@@ -87,9 +87,9 @@
             <div class="about-grid">
                 <div class="about-text slide-up">
                     <h2 class="section-title">The Couple</h2>
-                    <p class="subtitle" style="text-align: center">Michelle Tuszewski & David Schnitzler</p>
+                    <h3 class="subtitle">Michelle Tuszewski & David Schnitzler</h3>
                     <div class="divider center"></div>
-                    <p>We can’t wait to celebrate our big day with you. After our ceremony in Windsor, we’ll be heading
+                    <p>We can't wait to celebrate our big day with you. After our ceremony in Windsor, we'll be heading
                         to Kingsville for a night of dinner and dancing at the winery. We feel so lucky to be surrounded
                         by such incredible friends and family as we begin our lives together. See you in August!</p>
                 </div>
@@ -125,7 +125,7 @@
     <section id="event-details" class="event-details section-padding bg-alt">
         <div class="container">
             <div class="section-header slide-up">
-                <h2 class="section-title">The Day’s Journey</h2>
+                <h2 class="section-title">The Day's Journey</h2>
                 <div class="divider center"></div>
                 <p>Saturday, August 15, 2026</p>
                 <p class="dress-code">Dress Code: Formal / Cocktail Attire</p>
@@ -145,7 +145,9 @@
                     <div class="timeline-time">3:45 PM</div>
                     <div class="timeline-content">
                         <h3>The Intermission</h3>
-                        <p>Take a breather before the celebration continues and explore the area. Since we’re already downtown, we highly recommend a quick detour to the Windsor Waterfront for a stroll with iconic views of the Detroit skyline.</p>
+                        <p>Take a breather before the celebration continues and explore the area. Since we're already
+                            downtown, we highly recommend a quick detour to the Windsor Waterfront for a stroll with
+                            iconic views of the Detroit skyline.</p>
                     </div>
                 </div>
                 <div class="timeline-item slide-up delay-2">
@@ -253,8 +255,8 @@
                 <div class="alt-groups">
                     <div class="alt-group">
                         <div class="alt-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                                 <polyline points="9 22 9 12 15 12 15 22"></polyline>
                             </svg>
@@ -265,8 +267,9 @@
                             <a href="https://www.airbnb.ca/s/Kingsville--ON/homes?checkin=2026-08-15&checkout=2026-08-16"
                                 target="_blank" rel="noopener noreferrer" class="alt-link">
                                 Airbnb
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
@@ -274,8 +277,9 @@
                             <a href="https://www.booking.com/searchresults.html?ss=Kingsville%2C+Ontario%2C+Canada&checkin=2026-08-15&checkout=2026-08-16"
                                 target="_blank" rel="noopener noreferrer" class="alt-link">
                                 Booking.com
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
@@ -284,8 +288,8 @@
                     </div>
                     <div class="alt-group">
                         <div class="alt-icon">
-                            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
                                 <circle cx="12" cy="10" r="3"></circle>
                             </svg>
@@ -296,8 +300,9 @@
                             <a href="https://www.airbnb.ca/s/Windsor--ON/homes?checkin=2026-08-15&checkout=2026-08-16"
                                 target="_blank" rel="noopener noreferrer" class="alt-link">
                                 Airbnb
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
@@ -305,8 +310,9 @@
                             <a href="https://www.booking.com/searchresults.html?ss=Windsor%2C+Ontario%2C+Canada&checkin=2026-08-15&checkout=2026-08-16"
                                 target="_blank" rel="noopener noreferrer" class="alt-link">
                                 Booking.com
-                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <line x1="5" y1="12" x2="19" y2="12"></line>
                                     <polyline points="12 5 19 12 12 19"></polyline>
                                 </svg>
@@ -330,8 +336,8 @@
             <div class="guide-grid">
                 <div class="guide-card slide-up">
                     <div class="guide-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M8 22h8"></path>
                             <path d="M12 15v7"></path>
                             <path d="M12 15a5 5 0 0 0 5-5c0-2-.5-4-5-8-4.5 4-5 6-5 8a5 5 0 0 0 5 5z"></path>
@@ -346,8 +352,8 @@
                 </div>
                 <div class="guide-card slide-up delay-1">
                     <div class="guide-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"></path>
                         </svg>
                     </div>
@@ -360,8 +366,8 @@
                 </div>
                 <div class="guide-card slide-up delay-2">
                     <div class="guide-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z">
                             </path>
                             <path d="M2 22l10-10"></path>
@@ -376,8 +382,8 @@
                 </div>
                 <div class="guide-card slide-up delay-3">
                     <div class="guide-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                            stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <svg aria-hidden="true" width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
                             <rect x="2" y="20" width="20" height="2"></rect>
                             <rect x="4" y="6" width="3" height="10"></rect>
                             <rect x="10" y="6" width="4" height="10"></rect>
@@ -420,49 +426,41 @@
 
                     <!-- Step 1: Identification -->
                     <div id="rsvpStep1" class="rsvp-step slide-in">
-                        <div class="step-header">
-                            <h3 class="step-title"
-                                style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem; text-align: center;">
-                                Welcome</h3>
-                            <p class="step-subtitle"
-                                style="text-align: center; color: var(--clr-text-light); margin-bottom: 2rem;">Please provide your details to begin.</p>
+                        <div class="rsvp-step-header">
+                            <h3 class="rsvp-step-title">Welcome</h3>
+                            <p class="rsvp-step-subtitle">Please provide your details to begin.</p>
                         </div>
 
                         <div class="form-group">
-                            <label for="rsvpFullName"
-                                style="text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; color: var(--clr-text-light);">Your
-                                Full Name</label>
-                            <input type="text" id="rsvpFullName" name="full_name" placeholder="e.g. Julian Miller" required
-                                style="padding: 1rem; font-size: 1.1rem; border-radius: 8px;">
+                            <label for="rsvpFullName" class="rsvp-label">Your Full Name</label>
+                            <input type="text" id="rsvpFullName" name="full_name" placeholder="e.g. Julian Miller"
+                                required class="rsvp-field">
                         </div>
 
                         <div class="form-group" style="margin-top: 1.5rem;">
                             <div style="display: flex; justify-content: space-between; align-items: center;">
-                                <label for="rsvpEmail"
-                                    style="text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; color: var(--clr-text-light);">Email
-                                    Address</label>
-                                <span
-                                    style="font-size: 0.7rem; text-transform: uppercase; font-weight: 600; color: #999;">Optional</span>
+                                <label for="rsvpEmail" class="rsvp-label">Email Address</label>
+                                <span class="rsvp-label-optional">Optional</span>
                             </div>
-                            <div style="position: relative;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#999"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                                    style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); pointer-events: none;">
+                            <div class="rsvp-input-container">
+                                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    class="rsvp-input-icon" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <path
                                         d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
                                     </path>
                                     <polyline points="22,6 12,13 2,6"></polyline>
                                 </svg>
                                 <input type="email" id="rsvpEmail" name="email" placeholder="For important updates only"
-                                    style="padding: 1rem 1rem 1rem 2.8rem; font-size: 1.1rem; border-radius: 8px; width: 100%;">
+                                    class="rsvp-field rsvp-field-icon">
                             </div>
                         </div>
 
                         <button type="button" id="btnNext1" class="btn-primary" disabled
                             style="width: 100%; margin-top: 2rem; display: flex; justify-content: center; align-items: center; gap: 0.5rem; padding: 1.2rem;">
                             Continue to Attendance
-                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <polyline points="9 18 15 12 9 6"></polyline>
                             </svg>
                         </button>
@@ -470,28 +468,22 @@
 
                     <!-- Step 2: Attendance Details -->
                     <div id="rsvpStep2" class="rsvp-step hidden slide-in">
-                        <div class="step-header">
-                            <h3 class="step-title"
-                                style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem; text-align: center;">
-                                Attendance</h3>
-                            <p class="step-subtitle"
-                                style="text-align: center; color: var(--clr-text-light); margin-bottom: 2rem;">Which
-                                parts of the celebration can you join?</p>
+                        <div class="rsvp-step-header">
+                            <h3 class="rsvp-step-title">Attendance</h3>
+                            <p class="rsvp-step-subtitle">Which parts of the celebration can you join?</p>
                         </div>
 
-                        <div class="attendance-group" style="margin-bottom: 2rem;">
-                            <div
-                                style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--clr-text);">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="attendance-group">
+                            <div class="attendance-group-label">
+                                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
                                     <line x1="16" y1="2" x2="16" y2="6"></line>
                                     <line x1="8" y1="2" x2="8" y2="6"></line>
                                     <line x1="3" y1="10" x2="21" y2="10"></line>
                                 </svg>
-                                <span
-                                    style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Saturday,
-                                    Aug 15: The Wedding</span>
+                                <span>Saturday, Aug 15: The Wedding</span>
                             </div>
                             <div class="radio-grid">
                                 <button type="button" class="attendance-btn" data-type="wedding" data-val="yes">Joyfully
@@ -501,19 +493,17 @@
                             </div>
                         </div>
 
-                        <div class="attendance-group" style="margin-bottom: 2rem;">
-                            <div
-                                style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1rem; color: var(--clr-text);">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <div class="attendance-group">
+                            <div class="attendance-group-label">
+                                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
                                     <circle cx="9" cy="7" r="4"></circle>
                                     <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
                                     <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                                 </svg>
-                                <span
-                                    style="font-size: 0.8rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1px;">Sunday,
-                                    Aug 16: Day-After Celebration</span>
+                                <span>Sunday, Aug 16: Day-After Celebration</span>
                             </div>
                             <div class="radio-grid">
                                 <button type="button" class="attendance-btn" data-type="party" data-val="yes">Will be
@@ -526,8 +516,9 @@
                         <div style="display: flex; gap: 1rem; margin-top: 2rem;">
                             <button type="button" id="btnPrev2" class="btn-outline"
                                 style="flex: 1; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <polyline points="15 18 9 12 15 6"></polyline>
                                 </svg>
                                 Back
@@ -535,8 +526,9 @@
                             <button type="button" id="btnNext2" class="btn-primary" disabled
                                 style="flex: 2; display: flex; justify-content: center; align-items: center; gap: 0.5rem;">
                                 Next Details
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <polyline points="9 18 15 12 9 6"></polyline>
                                 </svg>
                             </button>
@@ -545,33 +537,28 @@
 
                     <!-- Step 3: Guest Names & Preferences -->
                     <div id="rsvpStep3" class="rsvp-step hidden slide-in">
-                        <div class="step-header">
-                            <h3 class="step-title"
-                                style="font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.5rem; text-align: center;">
-                                Guest List</h3>
-                            <p class="step-subtitle"
-                                style="text-align: center; color: var(--clr-text-light); margin-bottom: 2rem;">Please
-                                provide the names for each guest.</p>
+                        <div class="rsvp-step-header">
+                            <h3 class="rsvp-step-title">Guest List</h3>
+                            <p class="rsvp-step-subtitle">Please provide the names for each guest.</p>
                         </div>
 
                         <!-- Wedding Guests -->
-                        <div id="weddingGuestsSection" class="guest-section hidden"
-                            style="background: rgba(0,0,0,0.02); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                        <div id="weddingGuestsSection" class="guest-section hidden">
+                            <div class="guest-section-header">
                                 <div>
                                     <p style="font-weight: 600; font-size: 0.95rem;">Wedding Day</p>
                                     <p
                                         style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--clr-text-light);">
                                         Aug 15th</p>
                                 </div>
-                                <div class="guest-counter"
-                                    style="display: flex; align-items: center; gap: 1rem; background: var(--clr-bg); padding: 0.3rem; border-radius: 8px; border: 1px solid var(--clr-champagne);">
+                                <div class="guest-counter">
                                     <button type="button" class="counter-btn" data-target="wedding" data-action="minus"
+                                        aria-label="Decrease wedding guest count"
                                         style="width: 32px; height: 32px; border: none; background: transparent; font-size: 1.2rem; cursor: pointer; border-radius: 4px;">-</button>
                                     <span id="weddingGuestCount"
                                         style="font-weight: 600; min-width: 20px; text-align: center;">1</span>
                                     <button type="button" class="counter-btn" data-target="wedding" data-action="plus"
+                                        aria-label="Increase wedding guest count"
                                         style="width: 32px; height: 32px; border: none; background: transparent; font-size: 1.2rem; cursor: pointer; border-radius: 4px;">+</button>
                                 </div>
                             </div>
@@ -582,23 +569,22 @@
                         </div>
 
                         <!-- Party Guests -->
-                        <div id="partyGuestsSection" class="guest-section hidden"
-                            style="background: rgba(0,0,0,0.02); padding: 1.5rem; border-radius: 12px; margin-bottom: 1.5rem;">
-                            <div
-                                style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid rgba(0,0,0,0.1); padding-bottom: 1rem; margin-bottom: 1.5rem;">
+                        <div id="partyGuestsSection" class="guest-section hidden">
+                            <div class="guest-section-header">
                                 <div>
                                     <p style="font-weight: 600; font-size: 0.95rem;">Day-After Celebration</p>
                                     <p
                                         style="font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; color: var(--clr-text-light);">
                                         Aug 16th</p>
                                 </div>
-                                <div class="guest-counter"
-                                    style="display: flex; align-items: center; gap: 1rem; background: var(--clr-bg); padding: 0.3rem; border-radius: 8px; border: 1px solid var(--clr-champagne);">
+                                <div class="guest-counter">
                                     <button type="button" class="counter-btn" data-target="party" data-action="minus"
+                                        aria-label="Decrease party guest count"
                                         style="width: 32px; height: 32px; border: none; background: transparent; font-size: 1.2rem; cursor: pointer; border-radius: 4px;">-</button>
                                     <span id="partyGuestCount"
                                         style="font-weight: 600; min-width: 20px; text-align: center;">1</span>
                                     <button type="button" class="counter-btn" data-target="party" data-action="plus"
+                                        aria-label="Increase party guest count"
                                         style="width: 32px; height: 32px; border: none; background: transparent; font-size: 1.2rem; cursor: pointer; border-radius: 4px;">+</button>
                                 </div>
                             </div>
@@ -608,51 +594,47 @@
                             </div>
                         </div>
 
-                        <div id="noAttendanceSection" class="hidden"
-                            style="background: rgba(251, 191, 36, 0.1); padding: 2rem; border-radius: 12px; border: 1px solid rgba(251, 191, 36, 0.3); text-align: center; margin-bottom: 2rem;">
-                            <p
-                                style="font-family: var(--font-heading); font-style: italic; font-size: 1.2rem; color: #b45309;">
-                                "We're sorry to miss you, but we appreciate you letting us know!"</p>
+                        <div id="noAttendanceSection" class="no-attendance-banner hidden">
+                            <p class="no-attendance-text">"We're sorry to miss you, but we appreciate you letting us
+                                know!"</p>
                         </div>
 
                         <div class="form-group" style="margin-bottom: 1.5rem;">
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <label
-                                    style="display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; color: var(--clr-text-light);">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <label class="rsvp-label" style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
                                         <path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"></path>
                                         <path d="M7 2v20"></path>
                                         <path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"></path>
                                     </svg>
                                     Dietary Requirements
                                 </label>
-                                <span
-                                    style="font-size: 0.7rem; text-transform: uppercase; font-weight: 600; color: #999;">Optional</span>
+                                <span class="rsvp-label-optional">Optional</span>
                             </div>
                             <textarea id="rsvpDietary" name="dietary_notes" rows="3"
-                                placeholder="Please list any allergies or dietary needs..."
-                                style="padding: 1rem; border-radius: 8px; resize: none;"></textarea>
+                                placeholder="Please list any allergies or dietary needs..." class="rsvp-field"
+                                style="resize: none;"></textarea>
                         </div>
 
                         <div class="form-group" style="margin-bottom: 1.5rem;">
                             <div
                                 style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
-                                <label
-                                    style="display: flex; align-items: center; gap: 0.5rem; text-transform: uppercase; font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; color: var(--clr-text-light);">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <label class="rsvp-label" style="display: flex; align-items: center; gap: 0.5rem;">
+                                    <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none"
+                                        stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
                                         <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                     </svg>
                                     Message for the Couple
                                 </label>
-                                <span
-                                    style="font-size: 0.7rem; text-transform: uppercase; font-weight: 600; color: #999;">Optional</span>
+                                <span class="rsvp-label-optional">Optional</span>
                             </div>
                             <textarea id="rsvpMessageTxt" name="message" rows="3"
-                                placeholder="Share a sweet note with Michelle & David..."
-                                style="padding: 1rem; border-radius: 8px; resize: none;"></textarea>
+                                placeholder="Share a sweet note with Michelle & David..." class="rsvp-field"
+                                style="resize: none;"></textarea>
                         </div>
 
                         <div style="display: flex; gap: 1rem; margin-top: 2rem;">
@@ -663,8 +645,9 @@
                             <button type="submit" id="btnSubmit" class="btn-primary"
                                 style="flex: 2; display: flex; justify-content: center; align-items: center; gap: 0.5rem; background-color: var(--clr-text);">
                                 Confirm RSVP
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round">
                                     <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                     <polyline points="22 4 12 14.01 9 11.01"></polyline>
                                 </svg>
@@ -677,8 +660,8 @@
                         style="text-align: center; padding: 2rem 0;">
                         <div
                             style="width: 80px; height: 80px; background: rgba(16, 185, 129, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.5rem auto;">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#10b981"
-                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <svg aria-hidden="true" width="40" height="40" viewBox="0 0 24 24" fill="none"
+                                stroke="#10b981" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                                 <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
                                 <polyline points="22 4 12 14.01 9 11.01"></polyline>
                             </svg>
@@ -701,9 +684,9 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <img src="./assets/images/monogram_white.png" alt="David & Michelle Monogram" class="footer-monogram">
+                <img src="./assets/images/monogram_white.png" alt="Michelle & David Monogram" class="footer-monogram">
                 <p>August 15, 2026 | Windsor, ON</p>
-                <p class="copyright">&copy; 2026 David & Michelle. All rights reserved.</p>
+                <p class="copyright">&copy; 2026 Michelle & David. All rights reserved.</p>
             </div>
         </div>
     </footer>

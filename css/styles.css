@@ -115,7 +115,7 @@ section {
 
 .nav-container {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
@@ -456,6 +456,9 @@ section {
   color: var(--clr-text-light);
   font-size: 0.95rem;
   margin-bottom: 2.5rem;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
 }
 
 .accommodation-item {
@@ -900,40 +903,6 @@ button:disabled {
 }
 
 @media (max-width: 768px) {
-  .nav-links {
-    position: fixed;
-    top: 0;
-    right: -100%;
-    width: 250px;
-    height: 100vh;
-    background-color: var(--clr-bg);
-    flex-direction: column;
-    padding: 100px 40px;
-    transition: var(--transition-smooth);
-    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-  }
-  
-  .nav-links.active {
-    right: 0;
-  }
-  
-  .hamburger {
-    display: flex;
-    z-index: 1001;
-  }
-  
-  .hamburger.active span:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-  }
-  
-  .hamburger.active span:nth-child(2) {
-    opacity: 0;
-  }
-  
-  .hamburger.active span:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-  }
-  
   .timeline::before {
     left: 40px;
   }
@@ -980,3 +949,224 @@ button:disabled {
 }
 
 
+/* --- RSVP Form Styling (Refactored from inline) --- */
+.rsvp-step-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.rsvp-step-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--clr-text);
+}
+
+.rsvp-step-subtitle {
+  font-size: 1rem;
+  color: var(--clr-text-light);
+}
+
+.rsvp-label {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--clr-text-light);
+  display: block;
+}
+
+.rsvp-label-optional {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #999;
+}
+
+.rsvp-input-container {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.rsvp-input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  stroke: #999;
+}
+
+.rsvp-field {
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+.rsvp-field-icon {
+  padding-left: 2.8rem;
+}
+
+.guest-section {
+  background: rgba(0,0,0,0.02);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.guest-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.guest-counter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--clr-bg);
+  padding: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid var(--clr-champagne);
+}
+
+.guest-input-wrapper {
+  margin-bottom: 1rem;
+}
+
+.guest-input-label {
+  font-size: 0.7rem; 
+  font-weight: 700; 
+  color: var(--clr-text-light); 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  margin-bottom: 0.2rem;
+}
+
+.guest-input-relative {
+  position: relative; 
+  width: 100%;
+}
+
+.guest-input-number {
+  position: absolute; 
+  left: 15px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  color: var(--clr-text-light); 
+  font-family: 'Cormorant Garamond', serif; 
+  font-style: italic; 
+  font-size: 1rem; 
+  pointer-events: none;
+}
+
+.guest-field {
+  width: 100%; 
+  padding: 0.8rem 1rem 0.8rem 2.8rem; 
+  border-radius: 8px; 
+  border: 1px solid rgba(0,0,0,0.1); 
+  background: var(--clr-bg); 
+  font-family: 'Inter', sans-serif; 
+  font-size: 1rem; 
+  transition: border-color 0.3s;
+}
+
+.attendance-group {
+  margin-bottom: 2rem;
+}
+
+.attendance-group-label {
+  display: flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+  margin-bottom: 1rem; 
+  color: var(--clr-text);
+  font-size: 0.8rem; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  letter-spacing: 1px;
+}
+
+.no-attendance-banner {
+  background: rgba(251, 191, 36, 0.1); 
+  padding: 2rem; 
+  border-radius: 12px; 
+  border: 1px solid rgba(251, 191, 36, 0.3); 
+  text-align: center; 
+  margin-bottom: 2rem;
+}
+
+.no-attendance-text {
+  font-family: var(--font-heading); 
+  font-style: italic; 
+  font-size: 1.2rem; 
+  color: #b45309;
+}
+
+.rsvp-error-message {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Accessibility: Button reset for hamburger */
+.hamburger {
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  margin: -0.5rem; /* Increase touch target without shifting layout */
+}
+
+.hamburger:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 4px;
+}
+
+@media (max-width: 1050px) {
+  .nav-container {
+    justify-content: flex-end;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--clr-bg);
+    flex-direction: column;
+    padding: 100px 40px;
+    transition: var(--transition-smooth);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+    z-index: 1001;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}

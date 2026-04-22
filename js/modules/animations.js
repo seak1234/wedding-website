@@ -10,8 +10,8 @@ export function initAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.classList.add('visible');
-                // Optional: Stop observing once visible if you only want it to animate once
-                // observer.unobserve(entry.target);
+                // Stop observing once visible to save performance
+                observer.unobserve(entry.target);
             }
         });
     }, observerOptions);

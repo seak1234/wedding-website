@@ -1,7 +1,10 @@
 export function initNavigation() {
-    // --- Navbar Scroll Effect ---
     const navbar = document.getElementById('navbar');
-    
+    const hamburger = document.getElementById('hamburger');
+    const navLinks = document.querySelector('.nav-links');
+    const navItems = document.querySelectorAll('.nav-links li a');
+
+    // --- Navbar Scroll Effect ---
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
             navbar.classList.add('scrolled');
@@ -19,7 +22,6 @@ export function initNavigation() {
             }
         });
 
-        const navItems = document.querySelectorAll('.nav-links li a');
         navItems.forEach(item => {
             item.classList.remove('active');
             if (current && item.getAttribute('href').includes(current)) {
@@ -29,22 +31,21 @@ export function initNavigation() {
     });
 
     // --- Mobile Hamburger Menu ---
-    const hamburger = document.querySelector('.hamburger');
-    const navLinks = document.querySelector('.nav-links');
-    const navItems = document.querySelectorAll('.nav-links li a');
-
     if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
+            const isActive = hamburger.classList.toggle('active');
             navLinks.classList.toggle('active');
+            hamburger.setAttribute('aria-expanded', isActive ? 'true' : 'false');
         });
 
-        // Close menu when a link is clicked
         navItems.forEach(item => {
             item.addEventListener('click', () => {
                 hamburger.classList.remove('active');
                 navLinks.classList.remove('active');
+                hamburger.setAttribute('aria-expanded', 'false');
             });
         });
     }
 }
+
+

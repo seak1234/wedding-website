@@ -1,5 +1,5 @@
 import { rsvpState, setStep, setSubmitted } from './state.js';
-import { updateView, renderGuestInputs } from './ui.js';
+import { updateView, renderGuestInputs, showRSVPError } from './ui.js';
 import { submitRSVP } from './api.js';
 
 export function initRSVPEvents() {
@@ -18,7 +18,16 @@ export function initRSVPEvents() {
 
     if (inputName) {
         inputName.addEventListener('input', (e) => {
-            rsvpState.formData.fullName = e.target.value;
+            const oldName = rsvpState.formData.fullName;
+            const newName = e.target.value;
+            rsvpState.formData.fullName = newName;
+            
+            if (rsvpState.formData.weddingGuestNames[0] === oldName || !rsvpState.formData.weddingGuestNames[0]) {
+                rsvpState.formData.weddingGuestNames[0] = newName;
+            }
+            if (rsvpState.formData.partyGuestNames[0] === oldName || !rsvpState.formData.partyGuestNames[0]) {
+                rsvpState.formData.partyGuestNames[0] = newName;
+            }
             updateView();
         });
     }
@@ -26,6 +35,7 @@ export function initRSVPEvents() {
     if (inputEmail) {
         inputEmail.addEventListener('input', (e) => {
             rsvpState.formData.email = e.target.value;
+            updateView();
         });
     }
 
@@ -65,11 +75,12 @@ export function initRSVPEvents() {
             const namesField = target === 'wedding' ? 'weddingGuestNames' : 'partyGuestNames';
             
             let currentCount = rsvpState.formData[countField];
-            let newCount = action === 'plus' ? currentCount + 1 : Math.max(1, currentCount - 1);
+            const maxGuests = 10;
+            let newCount = action === 'plus' ? Math.min(maxGuests, currentCount + 1) : Math.max(1, currentCount - 1);
             
             rsvpState.formData[countField] = newCount;
             
-            if (action === 'plus') {
+            if (newCount > currentCount) {
                 rsvpState.formData[namesField].push('');
             } else if (newCount < currentCount) {
                 rsvpState.formData[namesField].pop();
@@ -79,17 +90,17 @@ export function initRSVPEvents() {
         });
     });
 
-    if (btnNext1) btnNext1.addEventListener('click', () => { setStep(2); updateView(); });
+    if (btnNext1) btnNext1.addEventListener('click', () => {
+        if (rsvpForm.checkValidity()) {
+            setStep(2);
+            updateView();
+        } else {
+            rsvpForm.reportValidity();
+        }
+    });
     if (btnNext2) btnNext2.addEventListener('click', () => { setStep(3); updateView(); });
     if (btnPrev2) btnPrev2.addEventListener('click', () => { setStep(1); updateView(); });
     if (btnPrev3) btnPrev3.addEventListener('click', () => { setStep(2); updateView(); });
-
-    if (btnEditResponse) {
-        btnEditResponse.addEventListener('click', () => {
-            setSubmitted(false);
-            updateView();
-        });
-    }
 
     if (rsvpForm) {
         rsvpForm.addEventListener('submit', async (e) => {
@@ -108,16 +119,24 @@ export function initRSVPEvents() {
             }
 
             const btnSubmit = document.getElementById('btnSubmit');
+            const errorMsg = document.getElementById('rsvpErrorMsg');
+            if (errorMsg) errorMsg.classList.add('hidden'); // Hide previous errors
+
             const origHtml = btnSubmit.innerHTML;
             btnSubmit.innerHTML = 'Sending...';
             btnSubmit.disabled = true;
 
-            await submitRSVP(rsvpState.formData);
+            const result = await submitRSVP(rsvpState.formData);
 
-            setSubmitted(true);
+            if (result.success) {
+                setSubmitted(true);
+                updateView();
+            } else {
+                showRSVPError('Something went wrong. Please try again or contact us directly.');
+            }
+            
             btnSubmit.innerHTML = origHtml;
             btnSubmit.disabled = false;
-            updateView();
         });
     }
 }

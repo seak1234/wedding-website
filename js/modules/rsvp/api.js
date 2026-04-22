@@ -9,11 +9,11 @@ export async function submitRSVP(formData) {
             'full_name': formData.fullName,
             'email': formData.email,
             'attending_wedding': formData.attendingWedding,
-            'wedding_guest_count': formData.weddingGuestsCount,
-            'wedding_guest_names': formData.weddingGuestNames.filter(n => n.trim() !== '').join(', '),
+            'wedding_guest_count': formData.attendingWedding === 'yes' ? formData.weddingGuestsCount : 0,
+            'wedding_guest_names': formData.attendingWedding === 'yes' ? formData.weddingGuestNames.filter(n => n && n.trim() !== '').join(', ') : '',
             'attending_party': formData.attendingParty,
-            'party_guest_count': formData.partyGuestsCount,
-            'party_guest_names': formData.partyGuestNames.filter(n => n.trim() !== '').join(', '),
+            'party_guest_count': formData.attendingParty === 'yes' ? formData.partyGuestsCount : 0,
+            'party_guest_names': formData.attendingParty === 'yes' ? formData.partyGuestNames.filter(n => n && n.trim() !== '').join(', ') : '',
             'dietary_notes': formData.dietaryNotes,
             'message': formData.message
         };

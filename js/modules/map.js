@@ -78,36 +78,38 @@ function createMap() {
         });
     });
 
-    // Draw Animated Route
-    const lineSymbol = {
-        path: 'M 0,-1 0,1',
-        strokeOpacity: 1,
-        scale: 3,
-        strokeColor: '#333'
-    };
-
-    const line = new google.maps.Polyline({
-        path: [
-            { lat: locations[0].lat, lng: locations[0].lng },
-            { lat: locations[1].lat, lng: locations[1].lng }
-        ],
-        strokeOpacity: 0,
-        icons: [{
-            icon: lineSymbol,
-            offset: '0',
-            repeat: '20px'
-        }],
-        map: map
+    // Draw real Google Maps driving route between the two venues
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer({
+        map,
+        suppressMarkers: true,
+        preserveViewport: true,
+        polylineOptions: {
+            strokeColor: '#333',
+            strokeOpacity: 0.9,
+            strokeWeight: 4
+        }
     });
 
-    // Animation loop for the dashed line
-    let count = 0;
-    setInterval(() => {
-        count = (count + 1) % 200;
-        const icons = line.get('icons');
-        icons[0].offset = (count / 2) + '%';
-        line.set('icons', icons);
-    }, 50);
+    directionsService.route(
+        {
+            origin: { lat: locations[0].lat, lng: locations[0].lng },
+            destination: { lat: locations[1].lat, lng: locations[1].lng },
+            travelMode: google.maps.TravelMode.DRIVING
+        },
+        (result, status) => {
+            if (status !== 'OK' || !result) return;
+
+            directionsRenderer.setDirections(result);
+
+            // Keep the travel time badge in sync with the actual route.
+            const durationText = result.routes?.[0]?.legs?.[0]?.duration?.text;
+            const travelTimeEl = document.querySelector('.travel-time span');
+            if (durationText && travelTimeEl) {
+                travelTimeEl.textContent = `${durationText} drive`;
+            }
+        }
+    );
 
     // Handle Side Cards
     const cards = document.querySelectorAll('.map-location-card');

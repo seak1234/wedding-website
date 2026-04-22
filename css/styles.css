@@ -1190,11 +1190,11 @@ button:disabled {
 }
 
 .hero-countdown-wrapper .countdown-number {
-  font-size: clamp(2rem, 6vw, 3rem);
+  font-size: clamp(1rem, 6vw, 2rem);
 }
 
 .hero-countdown-wrapper .countdown-label {
-  font-size: 0.7rem;
+  font-size: 0.5rem;
   letter-spacing: 2px;
 }
 

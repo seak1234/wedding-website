@@ -77,8 +77,31 @@
                 <!-- <svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 6px; margin-bottom: 3px;"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg> -->
                 Windsor, Ontario, Canada
             </p>
+
+            <div class="hero-countdown-wrapper fade-in delay-4">
+                <div class="divider center" style="margin: 2.5rem auto; opacity: 0.4;"></div>
+                <div class="countdown-grid">
+                    <div class="countdown-item">
+                        <span id="days" class="countdown-number">00</span>
+                        <span class="countdown-label">Days</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="hours" class="countdown-number">00</span>
+                        <span class="countdown-label">Hours</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="minutes" class="countdown-number">00</span>
+                        <span class="countdown-label">Minutes</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span id="seconds" class="countdown-number">00</span>
+                        <span class="countdown-label">Seconds</span>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
+    
 
 
     <!-- About Section -->
@@ -189,6 +212,31 @@
                         <h3>End of Night</h3>
                         <p>Our incredible night comes to a close. Thank you for the laughter, the dances, and the
                             memories that will last us a lifetime. We love you all!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Map Section -->
+    <section id="map-section" class="map-section section-padding">
+        <div class="container">
+            <div class="section-header slide-up">
+                <h2 class="section-title">The Location</h2>
+                <div class="divider center"></div>
+                <p>Find your way to our celebration venues.</p>
+            </div>
+            <div class="map-wrapper slide-up">
+                <div id="map" class="map-container"></div>
+                <div class="map-overlay-info">
+                    <div class="map-location-card" data-lat="42.3082" data-lng="-83.0239">
+                        <h4>Holy Trinity Church</h4>
+                        <p>Ceremony Venue</p>
+                    </div>
+                    <div class="map-location-card" data-lat="42.0333" data-lng="-82.7333">
+                        <h4>Kingscoast Estate Winery</h4>
+                        <p>Reception Venue</p>
                     </div>
                 </div>
             </div>
@@ -691,6 +739,7 @@
         </div>
     </footer>
 
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDix3D-pH8tnwtB6iO6JY29MRMZEgdnPNw&callback=initGoogleMap" async defer></script>
     <script type="module" src="js/main.js"></script>
 </body>
 

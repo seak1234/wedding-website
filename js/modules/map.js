@@ -80,7 +80,13 @@ export function initMap() {
                 infoWindow.setContent(`
                     <div style="padding: 10px; font-family: 'Inter', sans-serif;">
                         <strong style="display:block; margin-bottom: 5px;">${loc.name}</strong>
-                        <span style="font-size: 13px; color: #555;">${loc.address}</span>
+                        <span style="font-size: 13px; color: #555; display: block; margin-bottom: 8px;">${loc.address}</span>
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(loc.name + ' ' + loc.address)}" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           style="color: #000; font-size: 12px; font-weight: 600; text-decoration: underline;">
+                           View on Google Maps
+                        </a>
                     </div>
                 `);
                 infoWindow.open(map, marker);

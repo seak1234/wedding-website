@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -158,8 +158,8 @@
                     <div class="timeline-time">2:30 PM</div>
                     <div class="timeline-content">
                         <h3>Wedding Ceremony</h3>
-                        <p><span class="timeline-address">Holy Trinity Church<br>1035 Ellis St E, Windsor, ON N8X 2J2,
-                                Canada</span>Witness the beginning of our forever in a traditional ceremony (<em>approx.
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=Holy+Trinity+Church+1035+Ellis+St+E+Windsor+ON+N8X+2J2+Canada" target="_blank" rel="noopener noreferrer" class="timeline-address">Holy Trinity Church<br>1035 Ellis St E, Windsor, ON N8X 2J2,
+                                Canada</a>Witness the beginning of our forever in a traditional ceremony (<em>approx.
                                 45 minutes</em>).</p>
                     </div>
                 </div>
@@ -176,8 +176,8 @@
                     <div class="timeline-time">6:00 PM</div>
                     <div class="timeline-content">
                         <h3>Cocktail Hour</h3>
-                        <p><span class="timeline-address">Kingscoast Estate Winery<br>1000 McCain Side Rd, Kingsville,
-                                ON N9Y 2E6, Canada</span>Doors open! Join us for drinks and appetizers before the
+                        <p><a href="https://www.google.com/maps/search/?api=1&query=Kingscoast+Estate+Winery+1000+McCain+Side+Rd+Kingsville+ON+N9Y+2E6+Canada" target="_blank" rel="noopener noreferrer" class="timeline-address">Kingscoast Estate Winery<br>1000 McCain Side Rd, Kingsville,
+                                ON N9Y 2E6, Canada</a>Doors open! Join us for drinks and appetizers before the
                             evening begins.</p>
                     </div>
                 </div>
@@ -224,18 +224,61 @@
             <div class="section-header slide-up">
                 <h2 class="section-title">The Location</h2>
                 <div class="divider center"></div>
-                <p>Find your way to our celebration venues.</p>
+                <p>Find your way to the venues.</p>
             </div>
             <div class="map-wrapper slide-up">
                 <div id="map" class="map-container"></div>
                 <div class="map-overlay-info">
+                    <!-- Venue 1 -->
                     <div class="map-location-card" data-lat="42.3082" data-lng="-83.0239">
-                        <h4>Holy Trinity Church</h4>
-                        <p>Ceremony Venue</p>
+                        <div class="location-card-header">
+                            <span class="location-tag">Ceremony</span>
+                            <h4>Holy Trinity Church</h4>
+                        </div>
+                        <p class="location-address">1035 Ellis St E, Windsor, ON</p>
+                        
+                        <div class="venue-amenities">
+                            <div class="amenity" title="Free Parking Available">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+                                <span>Free Parking</span>
+                            </div>
+                        </div>
+
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Holy+Trinity+Church+1035+Ellis+St+E+Windsor+ON+N8X+2J2" target="_blank" class="btn-directions">
+                            Get Directions
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
                     </div>
+
+                    <!-- Travel Timer -->
+                    <div class="travel-connector">
+                        <div class="connector-line"></div>
+                        <div class="travel-time">
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                            <span>35 min drive</span>
+                        </div>
+                        <div class="connector-line"></div>
+                    </div>
+
+                    <!-- Venue 2 -->
                     <div class="map-location-card" data-lat="42.0333" data-lng="-82.7333">
-                        <h4>Kingscoast Estate Winery</h4>
-                        <p>Reception Venue</p>
+                        <div class="location-card-header">
+                            <span class="location-tag">Reception</span>
+                            <h4>Kingscoast Estate Winery</h4>
+                        </div>
+                        <p class="location-address">1000 McCain Side Rd, Kingsville, ON</p>
+
+                        <div class="venue-amenities">
+                            <div class="amenity" title="Free On-site Parking">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 17V7h4a3 3 0 0 1 0 6H9"/></svg>
+                                <span>Free Parking</span>
+                            </div>
+                        </div>
+
+                        <a href="https://www.google.com/maps/dir/?api=1&destination=Kingscoast+Estate+Winery+1000+McCain+Side+Rd+Kingsville+ON+N9Y+2E6" target="_blank" class="btn-directions">
+                            Get Directions
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -259,7 +302,7 @@
 
                     <div class="accommodation-item">
                         <h4>The Grove Hotel</h4>
-                        <p class="timeline-address">12 Main St E, Kingsville, ON</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Grove+Hotel+12+Main+St+E+Kingsville+ON" target="_blank" rel="noopener noreferrer" class="timeline-address">12 Main St E, Kingsville, ON</a>
                         <a href="https://www.thegrove.rocks/" target="_blank" rel="noopener noreferrer"
                             class="accommodation-link">Visit Website</a>
                     </div>
@@ -278,13 +321,13 @@
 
                     <div class="accommodation-item">
                         <h4>Caesars Windsor</h4>
-                        <p class="timeline-address">377 Riverside Dr E, Windsor, ON</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=Caesars+Windsor+377+Riverside+Dr+E+Windsor+ON" target="_blank" rel="noopener noreferrer" class="timeline-address">377 Riverside Dr E, Windsor, ON</a>
                         <a href="https://www.caesars.com/caesars-windsor" target="_blank" rel="noopener noreferrer"
                             class="accommodation-link">Visit Website</a>
                     </div>
                     <div class="accommodation-item">
                         <h4>DoubleTree by Hilton</h4>
-                        <p class="timeline-address">333 Riverside Dr W, Windsor, ON</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=DoubleTree+by+Hilton+333+Riverside+Dr+W+Windsor+ON" target="_blank" rel="noopener noreferrer" class="timeline-address">333 Riverside Dr W, Windsor, ON</a>
                         <a href="https://www.hilton.com/en/hotels/yqgwidt-doubletree-windsor-hotel-and-suites/"
                             target="_blank" rel="noopener noreferrer" class="accommodation-link">Visit Website</a>
                     </div>

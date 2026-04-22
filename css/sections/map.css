@@ -23,6 +23,25 @@
   z-index: 1;
 }
 
+/* Hide Google Maps attribution and branding for a cleaner look */
+.gm-style-cc, 
+.gm-style-mtc,
+.gm-style .gmnoprint:not(.gm-bundled-control) {
+  display: none !important;
+}
+
+/* Hide Google Logo */
+.gm-style a[href*="maps.google.com/maps"] {
+  display: none !important;
+}
+
+/* Ensure the zoom control remains visible if needed, 
+   but hide the small "Keyboard shortcuts" footer */
+.gm-style .gm-style-cc {
+  display: none !important;
+}
+
+
 .map-overlay-info {
   width: 100%;
   background: var(--clr-bg);

@@ -78,6 +78,37 @@ function createMap() {
         });
     });
 
+    // Draw Animated Route
+    const lineSymbol = {
+        path: 'M 0,-1 0,1',
+        strokeOpacity: 1,
+        scale: 3,
+        strokeColor: '#333'
+    };
+
+    const line = new google.maps.Polyline({
+        path: [
+            { lat: locations[0].lat, lng: locations[0].lng },
+            { lat: locations[1].lat, lng: locations[1].lng }
+        ],
+        strokeOpacity: 0,
+        icons: [{
+            icon: lineSymbol,
+            offset: '0',
+            repeat: '20px'
+        }],
+        map: map
+    });
+
+    // Animation loop for the dashed line
+    let count = 0;
+    setInterval(() => {
+        count = (count + 1) % 200;
+        const icons = line.get('icons');
+        icons[0].offset = (count / 2) + '%';
+        line.set('icons', icons);
+    }, 50);
+
     // Handle Side Cards
     const cards = document.querySelectorAll('.map-location-card');
     cards.forEach(card => {

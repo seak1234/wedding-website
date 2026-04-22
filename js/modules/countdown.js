@@ -32,7 +32,7 @@ export function initCountdown() {
         if (distance < 0) {
             clearInterval(interval);
             const grid = document.querySelector('.countdown-grid');
-            if (grid) grid.innerHTML = '<h3 class="wedding-started">The Celebration Has Begun!</h3>';
+            if (grid) grid.innerHTML = '<h3 class="wedding-started">The Big Day Has Arrived</h3>';
         }
     };
 

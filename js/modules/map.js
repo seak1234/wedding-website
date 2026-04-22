@@ -48,13 +48,15 @@ export function initMap() {
                 name: "Holy Trinity Church",
                 lat: 42.3082,
                 lng: -83.0239,
-                address: "1035 Ellis St E, Windsor, ON"
+                address: "1035 Ellis St E, Windsor, ON",
+                icon: "./assets/images/church-marker.svg"
             },
             {
                 name: "Kingscoast Estate Winery",
                 lat: 42.0333,
                 lng: -82.7333,
-                address: "1000 McCain Side Rd, Kingsville, ON"
+                address: "1000 McCain Side Rd, Kingsville, ON",
+                icon: "./assets/images/winery-marker.svg"
             }
         ];
 
@@ -67,12 +69,10 @@ export function initMap() {
                 map: map,
                 title: loc.name,
                 icon: {
-                    path: google.maps.SymbolPath.CIRCLE,
-                    fillColor: '#000000',
-                    fillOpacity: 1,
-                    strokeWeight: 2,
-                    strokeColor: '#FFFFFF',
-                    scale: 10
+                    url: loc.icon,
+                    scaledSize: new google.maps.Size(40, 50),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(20, 50)
                 }
             });
 

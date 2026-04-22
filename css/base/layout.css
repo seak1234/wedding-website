@@ -1,0 +1,34 @@
+/* 
+   ==========================================================================
+   LAYOUT & GRID SYSTEM
+   - Defines core container widths and section padding.
+   - Includes background variations and structural wrappers.
+   ========================================================================== 
+*/
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.section-padding {
+  padding: 80px 0;
+}
+
+@media (max-width: 768px) {
+  .section-padding {
+    padding: 60px 0;
+  }
+}
+
+section {
+  scroll-margin-top: 100px;
+  background-color: var(--clr-bg);
+  position: relative;
+  z-index: 1;
+}
+
+.bg-alt {
+  background-color: var(--clr-bg-alt);
+}

@@ -1,0 +1,75 @@
+/* 
+   ==========================================================================
+   LOCAL GUIDE SECTION
+   - Cards for wineries, wellness, outdoor activities, and culture.
+   ========================================================================== 
+*/
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.guide-card {
+  background-color: var(--clr-bg);
+  padding: 3rem 2rem;
+  border-radius: 12px;
+  text-align: center;
+  border: 1px solid var(--clr-champagne);
+  transition: var(--transition-smooth);
+}
+
+.guide-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+  border-color: var(--clr-accent);
+}
+
+.guide-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background-color: var(--clr-bg-alt);
+  border-radius: 50%;
+  color: var(--clr-text);
+  margin-bottom: 1.5rem;
+  transition: var(--transition-smooth);
+}
+
+.guide-card:hover .guide-icon {
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+}
+
+.guide-card h4 {
+  font-family: var(--font-heading);
+  font-size: 1.4rem;
+  margin-bottom: 1rem;
+}
+
+.guide-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  display: inline-block;
+}
+
+.guide-list li {
+  color: var(--clr-text-light);
+  font-size: 0.95rem;
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.2rem;
+}
+
+.guide-list li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  color: var(--clr-accent);
+}

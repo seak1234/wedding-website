@@ -1,0 +1,149 @@
+/* 
+   ==========================================================================
+   HERO SECTION
+   - Handles the fixed background image fix for mobile devices.
+   - Manages the overlay, monogram, and title typography.
+   ========================================================================== 
+*/
+
+.hero {
+  height: 100vh;
+  min-height: 600px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background-color: transparent;
+  z-index: 0;
+}
+
+/* Desktop Background */
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('../../assets/images/background.jpg');
+  background-size: cover;
+  background-position: center 0%;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  z-index: 0;
+}
+
+@media (min-width: 1600px) {
+  .hero::before {
+    background-size: 1600px auto;
+  }
+}
+
+/* Mobile Background Fix (Prevents jumping on scroll) */
+@media (pointer: coarse) {
+  .hero::before {
+    display: none;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background-image: url('../../assets/images/background.jpg');
+    background-size: cover;
+    background-position: center 0%;
+    background-repeat: no-repeat;
+    z-index: -1;
+    pointer-events: none;
+  }
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, 
+    rgba(255,255,255,0.2) 0%, 
+    rgba(255,255,255,0.6) 40%, 
+    rgba(255,255,255,0.9) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  max-width: 800px;
+  padding: 0 20px;
+}
+
+.hero-monogram {
+  width: 480px;
+  height: auto;
+  margin: 0 auto 2rem auto;
+}
+
+.hero h1 {
+  font-size: clamp(2.5rem, 15vw, 5rem);
+  margin-bottom: 0.5rem;
+  color: var(--clr-text);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: 0;
+}
+
+.hero-title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25em;
+}
+
+.hero-date {
+  font-family: var(--font-time);
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  font-variant-numeric: oldstyle-nums;
+}
+
+.hero-location {
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size: 1.5rem;
+  color: var(--clr-text-light);
+}
+
+/* Responsive Overrides */
+@media (max-width: 900px) {
+  .hero h1 {
+    font-size: 3.5rem;
+  }
+}
+
+@media (max-width: 650px) {
+  .hero-title {
+    flex-direction: column;
+    gap: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    height: 100svh;
+    background-size: cover;
+    background-position: center 20%;
+  }
+
+  .hero-monogram {
+    width: 85%;
+    max-width: 350px;
+  }
+}

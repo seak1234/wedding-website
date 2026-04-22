@@ -1,0 +1,42 @@
+/* 
+   ==========================================================================
+   TYPOGRAPHY & GLOBAL TEXT STYLES
+   - Defines the core text hierarchy and recurring text elements.
+   - Includes section titles, subtitles, and global text selection.
+   ========================================================================== 
+*/
+
+::selection {
+  background: var(--clr-accent);
+  color: #fff;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 8vw, 2.5rem);
+  text-align: center;
+  margin-bottom: 0.5rem;
+  color: var(--clr-text);
+}
+
+.subtitle {
+  text-align: center;
+  font-size: 1.1rem;
+  color: var(--clr-text-light);
+  font-weight: 300;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.section-header p {
+  text-align: center;
+  color: var(--clr-text-light);
+}
+
+.dress-code {
+  font-family: var(--font-time);
+  font-size: 1.45rem;
+  font-weight: 700;
+  color: var(--clr-text) !important;
+  margin-top: 1.2rem;
+  letter-spacing: 0.3px;
+}

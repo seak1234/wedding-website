@@ -1,0 +1,17 @@
+/* 
+   ==========================================================================
+   UI ELEMENTS
+   - Small reusable decorative elements like dividers.
+   ========================================================================== 
+*/
+
+.divider {
+  width: 60px;
+  height: 2px;
+  background-color: var(--clr-accent);
+  margin: 1.5rem 0;
+}
+
+.divider.center {
+  margin: 1.5rem auto;
+}

@@ -1,0 +1,60 @@
+/* 
+   ==========================================================================
+   ANIMATIONS & TRANSITIONS
+   - Defines keyframes for fade-ins and slide-ups.
+   - Includes animation delays for staggered entrance effects.
+   ========================================================================== 
+*/
+
+.fade-in {
+  opacity: 0;
+  animation: fadeIn 1s ease forwards;
+}
+
+.slide-up {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delay-1 { animation-delay: 0.2s; transition-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; transition-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; transition-delay: 0.6s; }
+.delay-4 { animation-delay: 0.8s; transition-delay: 0.8s; }
+.delay-5 { animation-delay: 1s; transition-delay: 1s; }
+
+.fade-in-dynamic {
+  animation: fadeInDynamic 0.5s ease-out forwards;
+}
+
+@keyframes fadeInDynamic {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}

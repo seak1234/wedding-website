@@ -1,0 +1,227 @@
+/* 
+   ==========================================================================
+   MAP & VENUE CARDS
+   - Layout for the Google Maps integration.
+   - Interactive venue cards with amenities and directions.
+   ========================================================================== 
+*/
+
+.map-wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+  border: 1px solid var(--clr-champagne);
+  background: var(--clr-bg);
+}
+
+.map-container {
+  width: 100%;
+  height: 450px;
+  z-index: 1;
+}
+
+.map-overlay-info {
+  width: 100%;
+  background: var(--clr-bg);
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  border-top: 1px solid var(--clr-champagne);
+  z-index: 2;
+}
+
+.map-location-card {
+  flex: 1;
+  width: 100%;
+  min-width: 0;
+  padding: 1.8rem;
+  border: 1px solid var(--clr-champagne);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  background: var(--clr-bg);
+  position: relative;
+}
+
+.map-location-card:hover {
+  background-color: var(--clr-bg);
+  border-color: var(--clr-accent);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+}
+
+.map-location-card.active {
+  border-color: var(--clr-text);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.location-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 0.8rem;
+}
+
+.location-tag {
+  font-family: var(--font-body);
+  font-size: 0.65rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--clr-text-light);
+  opacity: 0.8;
+}
+
+.map-location-card h4 {
+  font-family: var(--font-heading);
+  font-size: clamp(1rem, 4vw, 1.2rem);
+  margin: 0;
+  color: var(--clr-text);
+  line-height: 1.2;
+  overflow-wrap: break-word;
+}
+
+.location-address {
+  font-size: clamp(0.7rem, 2.8vw, 0.8rem);
+  color: var(--clr-text-light);
+  margin-bottom: 0.2rem;
+  line-height: 1.5;
+  overflow-wrap: break-word;
+}
+
+/* Venue Amenities */
+.venue-amenities {
+  display: flex;
+  gap: 1.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.amenity {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--clr-text-light);
+}
+
+.amenity svg {
+  opacity: 0.7;
+}
+
+.amenity span {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+/* Travel Connector */
+.travel-connector {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 0;
+}
+
+.connector-line {
+  width: 40px;
+  height: 2px;
+  background: repeating-linear-gradient(
+    to right,
+    #999,
+    #999 4px,
+    transparent 4px,
+    transparent 8px
+  );
+}
+
+.travel-time {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--clr-bg-alt);
+  border-radius: 20px;
+  white-space: nowrap;
+}
+
+.travel-time span {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--clr-text-light);
+  font-style: italic;
+}
+
+.travel-time svg {
+  color: var(--clr-accent);
+}
+
+.map-popup {
+  font-family: var(--font-body);
+  padding: 0.5rem;
+}
+
+.map-popup strong {
+  display: block;
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1200px) {
+  .map-overlay-info {
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    gap: 1rem;
+  }
+
+  .map-location-card {
+    width: 100%;
+    max-width: 500px;
+    padding: 1.2rem;
+  }
+
+  .location-address {
+    font-size: clamp(0.65rem, 3vw, 0.75rem);
+  }
+
+  .map-location-card h4 {
+    font-size: clamp(0.9rem, 4vw, 1.1rem);
+  }
+
+  .travel-connector {
+    flex-direction: column;
+    padding: 0.5rem 0;
+    gap: 0.5rem;
+  }
+
+  .connector-line {
+    width: 2px;
+    height: 20px;
+    background: repeating-linear-gradient(
+      to bottom,
+      #999,
+      #999 4px,
+      transparent 4px,
+      transparent 8px
+    );
+  }
+}
+
+@media (max-width: 480px) {
+  .location-address {
+    font-size: clamp(0.6rem, 3.5vw, 0.7rem);
+    letter-spacing: -0.2px;
+  }
+
+  .map-location-card h4 {
+    font-size: clamp(0.85rem, 4.5vw, 1rem);
+  }
+}

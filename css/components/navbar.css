@@ -1,0 +1,147 @@
+/* 
+   ==========================================================================
+   NAVIGATION & MOBILE MENU
+   - Glassmorphism navbar with scroll detection.
+   - Full-screen mobile menu and hamburger icon logic.
+   ========================================================================== 
+*/
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  background: transparent;
+  transition: var(--transition-smooth);
+  padding: 1.5rem 0;
+}
+
+.navbar.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid var(--glass-border);
+  padding: 1rem 0;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.logo {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 4px;
+  color: var(--clr-text);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  flex-wrap: nowrap;
+}
+
+.nav-links li a {
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  position: relative;
+  padding-bottom: 5px;
+  transition: color 0.3s ease;
+}
+
+.nav-links li a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background-color: var(--clr-text);
+  transition: var(--transition-smooth);
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+  width: 100%;
+}
+
+/* Hamburger Icon */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  padding: 0.5rem;
+  margin: -0.5rem; /* Increase touch target */
+}
+
+.hamburger span {
+  width: 30px;
+  height: 2px;
+  background-color: var(--clr-text);
+  transition: var(--transition-smooth);
+}
+
+.hamburger:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 4px;
+}
+
+/* Responsive Navigation */
+@media (max-width: 1250px) {
+  .nav-links {
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 1050px) {
+  .nav-container {
+    justify-content: flex-end;
+  }
+
+  .nav-links {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 250px;
+    height: 100vh;
+    background-color: var(--clr-bg);
+    flex-direction: column;
+    padding: 100px 40px;
+    transition: var(--transition-smooth);
+    box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+  }
+
+  .nav-links.active {
+    right: 0;
+  }
+
+  .hamburger {
+    display: flex;
+    z-index: 1001;
+  }
+
+  .hamburger.active span:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+
+  .hamburger.active span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.active span:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+}

@@ -1,0 +1,130 @@
+/* 
+   ==========================================================================
+   COUPLE SECTION (ABOUT)
+   - Layout for the couple's story and photos.
+   - Includes the wedding newspaper download area.
+   ========================================================================== 
+*/
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 5rem;
+  align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.about-text {
+  text-align: left;
+}
+
+.about-text .section-title,
+.about-text .subtitle {
+  text-align: left;
+}
+
+.about-text .divider.center {
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.about-image {
+  width: 100%;
+  max-width: 500px;
+  margin: 0;
+}
+
+.about-text p {
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  color: var(--clr-text-light);
+  line-height: 1.8;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+/* Image Decoration */
+.image-frame {
+  position: relative;
+  padding: 1rem;
+}
+
+.image-frame::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 80%;
+  height: 80%;
+  border: 2px solid var(--clr-champagne);
+  z-index: 0;
+  transform: translate(20px, -20px);
+  transition: var(--transition-smooth);
+}
+
+.image-frame:hover::before {
+  transform: translate(10px, -10px);
+}
+
+.image-frame img {
+  position: relative;
+  z-index: 1;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+  filter: grayscale(100%);
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  width: 100%;
+}
+
+/* Newspaper Area */
+.newspapers-section {
+  text-align: center;
+  margin-top: 5rem;
+}
+
+.newspaper-intro {
+  color: var(--clr-text-light);
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+}
+
+.newspaper-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* Responsive Overrides */
+@media (max-width: 1200px) {
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    max-width: 700px;
+  }
+
+  .about-text {
+    text-align: center;
+  }
+
+  .about-text .section-title,
+  .about-text .subtitle {
+    text-align: center;
+  }
+
+  .about-text .divider.center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .about-image {
+    max-width: 400px;
+    margin: 2rem auto 0 auto;
+  }
+  
+  .image-frame::before {
+    transform: translate(0, -15px);
+  }
+}

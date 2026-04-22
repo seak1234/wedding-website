@@ -1,0 +1,295 @@
+/* 
+   ==========================================================================
+   RSVP SECTION
+   - Multi-step form with glassmorphism panel.
+   - Custom radio buttons, guest counters, and progress bar.
+   ========================================================================== 
+*/
+
+.rsvp-panel {
+  max-width: 700px;
+  margin: 0 auto;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  padding: 4rem;
+  box-shadow: 0 25px 50px rgba(0,0,0,0.05);
+}
+
+.rsvp-form {
+  margin-top: 2rem;
+}
+
+/* Progress Bar */
+.rsvp-progress-container {
+  height: 6px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 3px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.rsvp-progress-bar {
+  height: 100%;
+  background-color: var(--clr-text);
+  transition: width 0.7s ease-in-out;
+}
+
+/* Form Steps & Utility */
+.rsvp-step {
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.slide-in {
+  animation: slideInFromRight 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+/* Base Form Styling */
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+select,
+textarea {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  font-family: var(--font-body);
+  transition: var(--transition-smooth);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  background-color: var(--clr-bg);
+  border-color: var(--clr-text);
+  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+}
+
+/* Custom Attendance Buttons */
+.radio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.attendance-btn {
+  padding: 1.2rem;
+  border-radius: 12px;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  background: var(--clr-bg);
+  color: var(--clr-text-light);
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+}
+
+.attendance-btn:hover {
+  border-color: rgba(0,0,0,0.2);
+}
+
+.attendance-btn.active {
+  border-color: var(--clr-text);
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* RSVP Form Specific Styles */
+.rsvp-step-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.rsvp-step-title {
+  font-family: var(--font-heading);
+  font-size: 1.8rem;
+  margin-bottom: 0.5rem;
+  color: var(--clr-text);
+}
+
+.rsvp-step-subtitle {
+  font-size: 1rem;
+  color: var(--clr-text-light);
+}
+
+.rsvp-label {
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--clr-text-light);
+  display: block;
+}
+
+.rsvp-label-optional {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #999;
+}
+
+.rsvp-input-container {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.rsvp-input-icon {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  stroke: #999;
+}
+
+.rsvp-field {
+  padding: 1rem;
+  font-size: 1.1rem;
+  border-radius: 8px;
+}
+
+.rsvp-field-icon {
+  padding-left: 2.8rem;
+}
+
+/* Guest Counter Styles */
+.guest-section {
+  background: rgba(0,0,0,0.02);
+  padding: 1.5rem;
+  border-radius: 12px;
+  margin-bottom: 1.5rem;
+}
+
+.guest-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  padding-bottom: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.guest-counter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--clr-bg);
+  padding: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid var(--clr-champagne);
+}
+
+.guest-input-wrapper {
+  margin-bottom: 1rem;
+}
+
+.guest-input-label {
+  font-size: 0.7rem; 
+  font-weight: 700; 
+  color: var(--clr-text-light); 
+  text-transform: uppercase; 
+  letter-spacing: 1px; 
+  margin-bottom: 0.2rem;
+}
+
+.guest-input-relative {
+  position: relative; 
+  width: 100%;
+}
+
+.guest-input-number {
+  position: absolute; 
+  left: 15px; 
+  top: 50%; 
+  transform: translateY(-50%); 
+  color: var(--clr-text-light); 
+  font-family: 'Cormorant Garamond', serif; 
+  font-style: italic; 
+  font-size: 1rem; 
+  pointer-events: none;
+}
+
+.guest-field {
+  width: 100%; 
+  padding: 0.8rem 1rem 0.8rem 2.8rem; 
+  border-radius: 8px; 
+  border: 1px solid rgba(0,0,0,0.1); 
+  background: var(--clr-bg); 
+  font-family: 'Inter', sans-serif; 
+  font-size: 1rem; 
+  transition: border-color 0.3s;
+}
+
+.attendance-group {
+  margin-bottom: 2rem;
+}
+
+.attendance-group-label {
+  display: flex; 
+  align-items: center; 
+  gap: 0.5rem; 
+  margin-bottom: 1rem; 
+  color: var(--clr-text);
+  font-size: 0.8rem; 
+  font-weight: 700; 
+  text-transform: uppercase; 
+  letter-spacing: 1px;
+}
+
+.no-attendance-banner {
+  background: rgba(251, 191, 36, 0.1); 
+  padding: 2rem; 
+  border-radius: 12px; 
+  border: 1px solid rgba(251, 191, 36, 0.3); 
+  text-align: center; 
+  margin-bottom: 2rem;
+}
+
+.no-attendance-text {
+  font-family: var(--font-heading); 
+  font-style: italic; 
+  font-size: 1.2rem; 
+  color: #b45309;
+}
+
+.rsvp-error-message {
+  background: #fee2e2;
+  color: #b91c1c;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+/* Responsive Overrides */
+@media (max-width: 768px) {
+  .rsvp-panel {
+    padding: 2rem;
+  }
+  
+  .radio-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  #rsvp {
+    scroll-margin-top: 0px;
+  }
+}

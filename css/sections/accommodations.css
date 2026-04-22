@@ -1,0 +1,145 @@
+/* 
+   ==========================================================================
+   ACCOMMODATIONS SECTION
+   - Hotel recommendations in Kingsville and Windsor.
+   - Airbnb/Booking.com banner and links.
+   ========================================================================== 
+*/
+
+.accommodation-grid {
+  margin-top: 4rem;
+  align-items: flex-start;
+}
+
+.accommodation-heading {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+
+.accommodation-desc {
+  color: var(--clr-text-light);
+  font-size: 0.95rem;
+  margin-bottom: 2.5rem;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
+
+.accommodation-item {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border: 1px solid var(--clr-champagne);
+  border-radius: 8px;
+  background-color: var(--clr-bg);
+  transition: var(--transition-smooth);
+}
+
+.accommodation-item:hover {
+  border-color: var(--clr-accent);
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.accommodation-item h4 {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+}
+
+.accommodation-link {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 500;
+  color: var(--clr-text);
+  border-bottom: 1px solid var(--clr-text);
+  padding-bottom: 2px;
+  display: inline-block;
+  margin-top: 0.5rem;
+}
+
+.accommodation-link:hover {
+  color: var(--clr-text-light);
+  border-bottom-color: var(--clr-text-light);
+}
+
+/* Alternative Accommodations Banner */
+.airbnb-banner {
+  margin-top: 5rem;
+  padding: 4rem 2rem;
+  background-color: var(--clr-bg-alt);
+  border-radius: 16px;
+  text-align: center;
+}
+
+.alt-groups {
+  display: flex;
+  justify-content: center;
+  gap: 2.5rem;
+  flex-wrap: wrap;
+}
+
+.alt-group {
+  flex: 1;
+  min-width: min(100%, 280px);
+  max-width: 400px;
+  background-color: var(--clr-bg);
+  padding: 2.5rem 2rem;
+  border-radius: 12px;
+  border: 1px solid var(--clr-champagne);
+  transition: var(--transition-smooth);
+}
+
+.alt-group:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+  border-color: var(--clr-accent);
+}
+
+.alt-icon {
+  margin-bottom: 1rem;
+  color: var(--clr-text-light);
+}
+
+.alt-subheading {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: var(--clr-text);
+  margin-bottom: 0.5rem;
+}
+
+.alt-desc {
+  font-size: 0.9rem;
+  color: var(--clr-text-light);
+  margin-bottom: 2rem;
+}
+
+.alt-links-col {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.alt-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  background-color: var(--clr-bg-alt);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-family: var(--font-body);
+  font-weight: 500;
+  color: var(--clr-text);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: var(--transition-smooth);
+}
+
+.alt-link:hover {
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}

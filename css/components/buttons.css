@@ -1,0 +1,132 @@
+/* 
+   ==========================================================================
+   BUTTON COMPONENTS
+   - Defines the primary, secondary, and specialty buttons.
+   - Includes hover states and disabled logic.
+   ========================================================================== 
+*/
+
+.btn-primary {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+  border: none;
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: var(--transition-smooth);
+  border-radius: 4px;
+}
+
+.btn-primary:focus-visible {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 4px;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background-color: var(--clr-accent);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.btn-outline {
+  display: inline-block;
+  padding: 0.8rem 2rem;
+  border: 1px solid var(--clr-text);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-outline:focus-visible {
+  outline: 3px solid var(--clr-accent);
+  outline-offset: 4px;
+}
+
+.btn-outline:hover, .btn-outline:focus {
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.newspaper-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 220px;
+  padding: 0.8rem 2rem;
+  border: 1px solid var(--clr-text);
+  color: var(--clr-text);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: var(--transition-smooth);
+  border-radius: 4px;
+}
+
+.newspaper-btn:hover {
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.btn-directions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.8rem 1rem;
+  background-color: var(--clr-bg-alt);
+  color: var(--clr-text);
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-radius: 6px;
+  transition: var(--transition-smooth);
+  width: 100%;
+}
+
+.btn-directions:hover {
+  background-color: var(--clr-text);
+  color: var(--clr-bg);
+}
+
+.btn-directions svg {
+  transition: transform 0.3s ease;
+}
+
+.btn-directions:hover svg {
+  transform: translateX(3px);
+}
+
+.counter-btn {
+  transition: var(--transition-smooth);
+}
+
+.counter-btn:hover {
+  background-color: rgba(0,0,0,0.05) !important;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary:disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background-color: var(--clr-text);
+}

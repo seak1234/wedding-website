@@ -382,6 +382,7 @@ section {
 
 .timeline-item {
   display: flex;
+  align-items: flex-start;
   margin-bottom: 3rem;
   position: relative;
 }
@@ -406,8 +407,10 @@ section {
 .timeline-time::after {
   content: '';
   position: absolute;
-  top: 5px;
-  right: -5px;
+  top: 50%;
+  left: 151px;
+  right: auto;
+  transform: translate(-50%, -50%);
   width: 11px;
   height: 11px;
   border-radius: 50%;
@@ -918,8 +921,9 @@ button:disabled {
   }
   
   .timeline-time::after {
-    left: -26px;
-    top: 6px;
+    left: -19px;
+    top: 50%;
+    transform: translate(-50%, -50%);
   }
   
   .timeline-content {

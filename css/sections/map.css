@@ -48,7 +48,7 @@
   padding: 2rem;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: stretch; /* Ensure cards are same height */
   justify-content: center;
   gap: 2rem;
   border-top: 1px solid var(--clr-champagne);
@@ -66,6 +66,12 @@
   transition: var(--transition-smooth);
   background: var(--clr-bg);
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+.map-location-card .btn-directions {
+  margin-top: auto;
 }
 
 .map-location-card:hover {

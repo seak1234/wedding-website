@@ -35,6 +35,7 @@
         rel="stylesheet">
     <link rel="preload" as="image" href="./assets/images/background.jpg">
     <link rel="stylesheet" href="css/styles.css">
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 </head>
 
 <body>
@@ -503,8 +504,11 @@
                     <div class="divider center"></div>
                     <p>Kindly respond by July 1st, 2026</p>
                 </div>
-                <form class="rsvp-form" id="rsvpForm" name="rsvp" data-netlify="true" method="POST">
+                <form class="rsvp-form" id="rsvpForm" name="rsvp" data-netlify="true" netlify-honeypot="bot-field" data-netlify-recaptcha="true" method="POST">
                     <input type="hidden" name="form-name" value="rsvp" />
+                    <p class="hidden">
+                        <label>Don’t fill this out if you’re human: <input name="bot-field" /></label>
+                    </p>
                     <!-- Hidden fields for Netlify detection -->
                     <input type="hidden" name="attending_wedding" />
                     <input type="hidden" name="wedding_guest_count" />
@@ -728,6 +732,10 @@
                             <textarea id="rsvpMessageTxt" name="message" rows="3"
                                 placeholder="Share a sweet note with Michelle & David..." class="rsvp-field"
                                 style="resize: none;"></textarea>
+                        </div>
+
+                        <div class="form-group" style="margin: 1.5rem 0; display: flex; justify-content: center;">
+                            <div data-netlify-recaptcha="true"></div>
                         </div>
 
                         <div style="display: flex; gap: 1rem; margin-top: 2rem;">

@@ -126,6 +126,14 @@ export function initRSVPEvents() {
             btnSubmit.innerHTML = 'Sending...';
             btnSubmit.disabled = true;
 
+            const recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]')?.value;
+            if (!recaptchaResponse) {
+                showRSVPError('Please complete the reCAPTCHA verification.');
+                btnSubmit.innerHTML = origHtml;
+                btnSubmit.disabled = false;
+                return;
+            }
+
             const result = await submitRSVP(rsvpState.formData);
 
             if (result.success) {

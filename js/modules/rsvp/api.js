@@ -6,6 +6,7 @@ export async function submitRSVP(formData) {
         // Flatten guest name arrays into comma-separated strings for the backend
         const submissionData = {
             'form-name': 'rsvp',
+            'g-recaptcha-response': document.querySelector('[name="g-recaptcha-response"]')?.value || '',
             'full_name': formData.fullName,
             'email': formData.email,
             'attending_wedding': formData.attendingWedding,

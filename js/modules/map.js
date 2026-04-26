@@ -79,40 +79,40 @@ function createMap() {
     });
 
     // Draw real Google Maps driving route between the two venues
-    const directionsService = new google.maps.DirectionsService();
-    const directionsRenderer = new google.maps.DirectionsRenderer({
-        map,
-        suppressMarkers: true,
-        preserveViewport: true,
-        polylineOptions: {
-            strokeColor: '#333',
-            strokeOpacity: 0.8,
-            strokeWeight: 4
-        }
-    });
+    const calculateAndDisplayRoute = async () => {
+        try {
+            const { routes } = await google.maps.routes.Route.computeRoutes({
+                origin: { lat: locations[0].lat, lng: locations[0].lng },
+                destination: { lat: locations[1].lat, lng: locations[1].lng },
+                travelMode: google.maps.TravelMode.DRIVING,
+                routingPreference: 'TRAFFIC_AWARE',
+                fields: ['routes.polyline', 'routes.legs.duration', 'routes.localizedValues']
+            });
 
-    directionsService.route(
-        {
-            origin: { lat: locations[0].lat, lng: locations[0].lng },
-            destination: { lat: locations[1].lat, lng: locations[1].lng },
-            travelMode: google.maps.TravelMode.DRIVING
-        },
-        (result, status) => {
-            if (status !== 'OK' || !result) {
-                console.error('Directions request failed due to ' + status);
-                return;
-            }
+            if (routes && routes.length > 0) {
+                const route = routes[0];
 
-            directionsRenderer.setDirections(result);
-            
-            // Keep the travel time badge in sync with the actual route.
-            const durationText = result.routes?.[0]?.legs?.[0]?.duration?.text;
-            const travelTimeEl = document.querySelector('.travel-time span');
-            if (durationText && travelTimeEl) {
-                travelTimeEl.textContent = `${durationText} drive`;
+                // Render the Polyline with same styling as before
+                const polylines = route.createPolylines({
+                    strokeColor: '#333',
+                    strokeOpacity: 0.8,
+                    strokeWeight: 4
+                });
+                polylines.forEach(polyline => polyline.setMap(map));
+                
+                // Keep the travel time badge in sync with the actual route.
+                const durationText = route.localizedValues?.duration?.text;
+                const travelTimeEl = document.querySelector('.travel-time span');
+                if (durationText && travelTimeEl) {
+                    travelTimeEl.textContent = `${durationText} drive`;
+                }
             }
+        } catch (error) {
+            console.error('Routes request failed:', error);
         }
-    );
+    };
+
+    calculateAndDisplayRoute();
 
     // Handle Side Cards
     const cards = document.querySelectorAll('.map-location-card');

@@ -163,6 +163,6 @@
   }
 
   .particles-container {
-    filter: blur(2px); /* Sharper orbs for mobile experience */
+    filter: blur(3px); /* Sharper orbs for mobile experience */
   }
 }

@@ -81,7 +81,7 @@ export function initParticles() {
                             value: { min: 0.6, max: 0.8}
                         },
                         size: {
-                            value: { min: 1, max: 3 },
+                            value: { min: 1, max: 12 },
                             animation: {
                                 minimumValue: 7.5
                             }

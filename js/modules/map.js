@@ -86,25 +86,32 @@ function createMap() {
                 destination: { lat: locations[1].lat, lng: locations[1].lng },
                 travelMode: google.maps.TravelMode.DRIVING,
                 routingPreference: 'TRAFFIC_AWARE',
-                fields: ['routes.path', 'routes.localizedValues']
+                fields: ['routes.polyline.encodedPolyline', 'routes.duration']
             });
 
             if (routes && routes.length > 0) {
                 const route = routes[0];
 
                 // Render the Polyline with same styling as before
-                const polylines = route.createPolylines({
-                    strokeColor: '#333',
-                    strokeOpacity: 0.8,
-                    strokeWeight: 4
-                });
-                polylines.forEach(polyline => polyline.setMap(map));
+                if (route.polyline && route.polyline.encodedPolyline) {
+                    const path = google.maps.geometry.encoding.decodePath(route.polyline.encodedPolyline);
+                    const polyline = new google.maps.Polyline({
+                        path: path,
+                        map: map,
+                        strokeColor: '#333',
+                        strokeOpacity: 0.8,
+                        strokeWeight: 4
+                    });
+                }
                 
                 // Keep the travel time badge in sync with the actual route.
-                const durationText = route.localizedValues?.duration?.text;
-                const travelTimeEl = document.querySelector('.travel-time span');
-                if (durationText && travelTimeEl) {
-                    travelTimeEl.textContent = `${durationText} drive`;
+                if (route.duration) {
+                    const seconds = parseInt(route.duration, 10);
+                    const mins = Math.round(seconds / 60);
+                    const travelTimeEl = document.querySelector('.travel-time span');
+                    if (travelTimeEl) {
+                        travelTimeEl.textContent = `${mins} min drive`;
+                    }
                 }
             }
         } catch (error) {

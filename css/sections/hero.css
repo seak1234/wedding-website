@@ -85,7 +85,7 @@
   height: 100%;
   z-index: 1;
   pointer-events: none; /* Let clicks pass through */
-  filter: blur(6px); /* Creates realistic out-of-focus bokeh */
+  filter: blur(3px); /* Creates realistic out-of-focus bokeh */
 }
 
 .hero-content {
@@ -150,7 +150,7 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 1050px) {
   .hero {
     height: 100svh;
     background-size: cover;
@@ -160,5 +160,9 @@
   .hero-monogram {
     width: 85%;
     max-width: 350px;
+  }
+
+  .particles-container {
+    filter: blur(2px); /* Sharper orbs for mobile experience */
   }
 }

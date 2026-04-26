@@ -6,7 +6,7 @@ export function initParticles() {
 
     tsParticles.load("tsparticles", {
         fullScreen: { enable: false }, // Constrain to the parent div
-        fpsLimit: 60,
+        fpsLimit: 80,
         particles: {
             number: {
                 value: 40, // Fixed number for consistent bokeh appearance
@@ -15,7 +15,7 @@ export function initParticles() {
                 }
             },
             color: {
-                value: ["#ffffff", "#f8fafc", "#f1f5f9"] // Bright whites and very soft light greys
+                value: "#ffffff"
             },
             shape: {
                 type: "circle"
@@ -31,7 +31,7 @@ export function initParticles() {
                 }
             },
             size: {
-                value: { min: 10, max: 40 }, // Increased size for better bokeh effect
+                value: { min: 3, max: 10 }, // Increased size for better bokeh effect
                 random: true,
                 animation: {
                     enable: true,
@@ -61,8 +61,8 @@ export function initParticles() {
             },
             modes: {
                 repulse: {
-                    distance: 300, // Radius of the interaction (how close cursor needs to be)
-                    duration: 2, // Smooth transition back to original position
+                    distance: 400, // Radius of the interaction (how close cursor needs to be)
+                    duration: 10, // Smooth transition back to original position
                     factor: 2,   // Gentle push strength so it's not too violent
                     speed: 1       // Speed of the repulsion
                 }
@@ -74,11 +74,14 @@ export function initParticles() {
                 maxWidth: 1050,
                 options: {
                     particles: {
+                        number: {
+                            value: 22
+                        },
                         opacity: {
                             value: { min: 0.6, max: 0.8}
                         },
                         size: {
-                            value: { min: 5, max: 20 },
+                            value: { min: 1, max: 3 },
                             animation: {
                                 minimumValue: 7.5
                             }

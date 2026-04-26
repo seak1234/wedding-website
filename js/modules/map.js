@@ -86,7 +86,7 @@ function createMap() {
                 destination: { lat: locations[1].lat, lng: locations[1].lng },
                 travelMode: google.maps.TravelMode.DRIVING,
                 routingPreference: 'TRAFFIC_AWARE',
-                fields: ['routes.polyline', 'routes.legs.duration', 'routes.localizedValues']
+                fields: ['routes.path', 'routes.localizedValues']
             });
 
             if (routes && routes.length > 0) {

@@ -85,7 +85,7 @@
   height: 100%;
   z-index: 1;
   pointer-events: none; /* Let clicks pass through */
-  filter: blur(3px); /* Creates realistic out-of-focus bokeh */
+  filter: blur(5px); /* Creates realistic out-of-focus bokeh */
 }
 
 .hero-content {

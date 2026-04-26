@@ -9,7 +9,7 @@ export function initParticles() {
         fpsLimit: 80,
         particles: {
             number: {
-                value: 40, // Fixed number for consistent bokeh appearance
+                value: 30, // Fixed number for consistent bokeh appearance
                 density: {
                     enable: false // Disable density to prevent particles from being removed on resize
                 }
@@ -31,7 +31,7 @@ export function initParticles() {
                 }
             },
             size: {
-                value: { min: 3, max: 10 }, // Increased size for better bokeh effect
+                value: { min: 8, max: 30 }, // Increased size for better bokeh effect
                 random: true,
                 animation: {
                     enable: true,
@@ -61,9 +61,9 @@ export function initParticles() {
             },
             modes: {
                 repulse: {
-                    distance: 400, // Radius of the interaction (how close cursor needs to be)
-                    duration: 10, // Smooth transition back to original position
-                    factor: 2,   // Gentle push strength so it's not too violent
+                    distance: 500, // Radius of the interaction (how close cursor needs to be)
+                    duration: 100, // Smooth transition back to original position
+                    factor: 0.5,   // Gentle push strength so it's not too violent
                     speed: 1       // Speed of the repulsion
                 }
             }

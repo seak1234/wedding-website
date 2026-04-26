@@ -86,17 +86,16 @@ function createMap() {
                 destination: { lat: locations[1].lat, lng: locations[1].lng },
                 travelMode: google.maps.TravelMode.DRIVING,
                 routingPreference: 'TRAFFIC_AWARE',
-                fields: ['routes.polyline.encodedPolyline', 'routes.duration']
+                fields: ['durationMillis', 'path']
             });
 
             if (routes && routes.length > 0) {
                 const route = routes[0];
 
-                // Render the Polyline with same styling as before
-                if (route.polyline && route.polyline.encodedPolyline) {
-                    const path = google.maps.geometry.encoding.decodePath(route.polyline.encodedPolyline);
+                // Render the Polyline
+                if (route.path) {
                     const polyline = new google.maps.Polyline({
-                        path: path,
+                        path: route.path,
                         map: map,
                         strokeColor: '#333',
                         strokeOpacity: 0.8,
@@ -105,9 +104,8 @@ function createMap() {
                 }
                 
                 // Keep the travel time badge in sync with the actual route.
-                if (route.duration) {
-                    const seconds = parseInt(route.duration, 10);
-                    const mins = Math.round(seconds / 60);
+                if (route.durationMillis) {
+                    const mins = Math.round(route.durationMillis / 60000);
                     const travelTimeEl = document.querySelector('.travel-time span');
                     if (travelTimeEl) {
                         travelTimeEl.textContent = `${mins} min drive`;

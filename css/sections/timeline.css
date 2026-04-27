@@ -129,13 +129,15 @@ a.timeline-address:hover {
 /* Location Header Block */
 .timeline-location-header {
   display: block;
-  padding: 0.5rem 2.5rem 0.5rem calc(150px + 3rem);
-  margin: -2.5rem -2.5rem 1rem 0;
-  background-color: #eeeeee;
-  border-bottom: 1px solid #dddddd;
+  padding: 1.25rem 2.5rem 1.25rem calc(150px + 3rem);
+  margin: -2.5rem -2.5rem 1.5rem 0;
+  background-color: #1a1a1a;
+  border-bottom: none;
   border-top-right-radius: 16px;
   border-top-left-radius: 16px;
   position: relative;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
 }
 
 .header-ceremony {
@@ -148,21 +150,22 @@ a.timeline-address:hover {
 
 .timeline-location-header .location-details h4 {
   font-family: var(--font-heading);
-  font-size: 1rem;
-  margin-bottom: 0.1rem;
-  color: var(--clr-text);
+  font-size: 1.1rem;
+  margin-bottom: 0.2rem;
+  color: #ffffff;
+  letter-spacing: 0.5px;
 }
 
 .timeline-location-header .location-link {
-  font-size: 0.75rem;
-  color: var(--clr-text-light);
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.7);
   text-decoration: none;
   transition: var(--transition-smooth);
   display: inline-block;
 }
 
 .timeline-location-header .location-link:hover {
-  color: var(--clr-text);
+  color: #ffffff;
   text-decoration: underline;
   text-underline-offset: 4px;
 }
@@ -203,7 +206,7 @@ a.timeline-address:hover {
   }
 
   .timeline-location-header {
-    padding: 0.5rem 1.5rem 0.5rem 60px;
+    padding: 1rem 1.5rem 1rem 60px;
     margin: -2rem -1.5rem 3rem 0;
   }
 }

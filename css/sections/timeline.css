@@ -209,7 +209,6 @@ a.timeline-address:hover {
 }
 
 #event-details .section-title {
-  font-size: clamp(1.4rem, 5vw, 1.8rem);
   margin-bottom: 0.1rem;
 }
 

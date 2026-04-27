@@ -278,13 +278,76 @@ textarea:focus {
   font-weight: 500;
 }
 
+/* Form Navigation Buttons */
+.rsvp-btn-group {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.rsvp-btn-nav {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.rsvp-btn-back {
+  flex: 1;
+}
+
+.rsvp-btn-next {
+  flex: 2;
+}
+
+.rsvp-btn-full {
+  width: 100%;
+  margin-top: 2rem;
+  padding: 1.2rem;
+}
+
+/* Recaptcha container */
+.recaptcha-wrapper {
+  margin: 1.5rem 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 /* Responsive Overrides */
 @media (max-width: 768px) {
   .rsvp-panel {
-    padding: 2rem;
+    padding: 1.5rem;
   }
 
   #rsvp {
     scroll-margin-top: 0px;
+  }
+
+  .radio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .rsvp-btn-group {
+    flex-direction: column;
+    gap: 0.8rem;
+  }
+
+  .rsvp-btn-back,
+  .rsvp-btn-next {
+    flex: none;
+    width: 100%;
+  }
+
+  .recaptcha-wrapper {
+    transform: scale(0.85);
+    transform-origin: center;
+  }
+}
+
+@media (max-width: 400px) {
+  .recaptcha-wrapper {
+    transform: scale(0.78);
+    transform-origin: center;
   }
 }

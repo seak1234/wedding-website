@@ -48,6 +48,11 @@
   margin-bottom: 0;
 }
 
+.timeline-group.intermission-group {
+  background-color: transparent;
+  box-shadow: none;
+}
+
 .timeline-item {
   display: flex;
   align-items: flex-start;

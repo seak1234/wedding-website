@@ -21,7 +21,7 @@ export function initParticles() {
                 type: "circle"
             },
             opacity: {
-                value: { min: 0.3, max: 0.6 }, // Higher opacity to compensate for blur
+                value: { min: 0.3, max: 0.5 }, // Higher opacity to compensate for blur
                 random: true,
                 animation: {
                     enable: true,
@@ -31,7 +31,7 @@ export function initParticles() {
                 }
             },
             size: {
-                value: { min: 8, max: 30 }, // Increased size for better bokeh effect
+                value: { min: 5, max: 20 }, // Increased size for better bokeh effect
                 random: true,
                 animation: {
                     enable: true,
@@ -75,13 +75,13 @@ export function initParticles() {
                 options: {
                     particles: {
                         number: {
-                            value: 22
+                            value: 20
                         },
                         opacity: {
-                            value: { min: 0.6, max: 0.8}
+                            value: { min: 0.3, max: 0.5}
                         },
                         size: {
-                            value: { min: 1, max: 12 },
+                            value: { min: 2, max: 12 },
                             animation: {
                                 minimumValue: 7.5
                             }

@@ -23,8 +23,8 @@ export async function submitRSVP(formData, recaptchaResponse) {
             .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(submissionData[key]))
             .join('&');
 
-        // In dev, post to /rsvp (form-handler). In prod, post to / (Netlify Forms).
-        const endpoint = isDev ? '/rsvp' : '/';
+        // Post to /rsvp (form-handler) for both dev and prod. Form-handler verifies reCAPTCHA and forwards to Make.com.
+        const endpoint = '/rsvp';
         const response = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },

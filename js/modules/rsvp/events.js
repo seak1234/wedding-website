@@ -96,13 +96,18 @@ export function initRSVPEvents() {
         inputName.addEventListener('input', (e) => handleNameChange(e.target.value));
         inputName.addEventListener('change', (e) => handleNameChange(e.target.value));
         
-        // Handle browser autofill/restoration on reload
+        // Handle browser autofill/restoration on reload - check IMMEDIATELY and also poll
+        if (inputName.value) {
+            handleNameChange(inputName.value);
+        }
+        
+        // Also poll to catch autofill that happens slightly after page load
         const checkAutoFill = setInterval(() => {
-            if (inputName.value) {
+            if (inputName.value && rsvpState.formData.fullName !== inputName.value) {
                 handleNameChange(inputName.value);
                 clearInterval(checkAutoFill);
             }
-        }, 500);
+        }, 200);
 
         // Clear interval after 5 seconds if still nothing (avoids leaks)
         setTimeout(() => clearInterval(checkAutoFill), 5000);
@@ -117,16 +122,21 @@ export function initRSVPEvents() {
         inputEmail.addEventListener('input', (e) => handleEmailChange(e.target.value));
         inputEmail.addEventListener('change', (e) => handleEmailChange(e.target.value));
 
-        // Handle browser autofill/restoration on reload
-        const checkAutoFill = setInterval(() => {
-            if (inputEmail.value) {
+        // Handle browser autofill/restoration on reload - check IMMEDIATELY and also poll
+        if (inputEmail.value) {
+            handleEmailChange(inputEmail.value);
+        }
+        
+        // Also poll to catch autofill that happens slightly after page load
+        const checkAutoFillEmail = setInterval(() => {
+            if (inputEmail.value && rsvpState.formData.email !== inputEmail.value) {
                 handleEmailChange(inputEmail.value);
-                clearInterval(checkAutoFill);
+                clearInterval(checkAutoFillEmail);
             }
-        }, 500);
+        }, 200);
 
         // Clear interval after 5 seconds if still nothing (avoids leaks)
-        setTimeout(() => clearInterval(checkAutoFill), 5000);
+        setTimeout(() => clearInterval(checkAutoFillEmail), 5000);
     }
 
     if (dietaryNotes) {

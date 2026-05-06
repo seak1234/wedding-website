@@ -207,14 +207,14 @@ export function initRSVPEvents() {
 
             // Get reCAPTCHA token (async for invisible widget)
             let recaptchaResponse = '';
-            if (isDev && typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
+            if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
                 recaptchaResponse = await getRecaptchaToken();
             } else if (typeof grecaptcha !== 'undefined') {
                 // Fallback for non-invisible or Netlify case
                 recaptchaResponse = grecaptcha.getResponse() || '';
             }
 
-            if (!recaptchaResponse && !isDev) {
+            if (!recaptchaResponse) {
                 showRSVPError('Please complete the security verification (CAPTCHA).');
                 btnSubmit.innerHTML = origHtml;
                 btnSubmit.disabled = false;

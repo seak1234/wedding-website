@@ -128,17 +128,26 @@ export function initRSVPEvents() {
 
             // Skip reCAPTCHA check in development (dev subdomain or port 8080)
             // Also skip if no captcha widget is rendered on the page (e.g., not configured)
-            const isDev = window.location.hostname.includes('dev') || window.location.port === '8080';
-            const hasCaptchaWidget = !!document.querySelector('.g-recaptcha, [data-netlify-recaptcha]');
-            const recaptchaResponse = isDev ? 'dev-bypass-token' : document.querySelector('[name="g-recaptcha-response"]')?.value;
-            if (!isDev && hasCaptchaWidget && !recaptchaResponse) {
-                showRSVPError('Please complete the reCAPTCHA verification.');
+            // Get reCAPTCHA v3 token
+            let recaptchaResponse = '';
+            try {
+                recaptchaResponse = await new Promise((resolve) => {
+                    grecaptcha.ready(() => {
+                        grecaptcha.execute('6Lf9RdwsAAAAAOCULFTRqu0u87F3jNzl_EgP8qED', {action: 'submit'}).then(resolve);
+                    });
+                });
+            } catch (err) {
+                console.error('reCAPTCHA v3 error:', err);
+            }
+
+            if (!recaptchaResponse) {
+                showRSVPError('Security verification failed. Please refresh and try again.');
                 btnSubmit.innerHTML = origHtml;
                 btnSubmit.disabled = false;
                 return;
             }
 
-            const result = await submitRSVP(rsvpState.formData);
+            const result = await submitRSVP(rsvpState.formData, recaptchaResponse);
 
             if (result.success) {
                 setSubmitted(true);

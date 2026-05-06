@@ -15,7 +15,8 @@ export async function submitRSVP(formData, recaptchaResponse) {
             'party_guest_count': formData.attendingParty === 'yes' ? formData.partyGuestsCount : 0,
             'party_guest_names': formData.attendingParty === 'yes' ? formData.partyGuestNames.filter(n => n && n.trim() !== '').join(', ') : '',
             'dietary_notes': formData.dietaryNotes,
-            'message': formData.message
+            'message': formData.message,
+            'submission_date': formData.submissionDate
         };
 
         const body = Object.keys(submissionData)

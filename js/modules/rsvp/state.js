@@ -11,7 +11,8 @@ export const rsvpState = {
         weddingGuestNames: [''], 
         partyGuestNames: [''],   
         dietaryNotes: '',
-        message: ''
+        message: '',
+        submissionDate: ''
     }
 };
 

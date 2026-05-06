@@ -17,9 +17,9 @@ export function initRSVPEvents() {
     if (!rsvpForm) return;
 
     if (inputName) {
-        inputName.addEventListener('input', (e) => {
+        const handleNameChange = (val) => {
             const oldName = rsvpState.formData.fullName;
-            const newName = e.target.value;
+            const newName = val;
             rsvpState.formData.fullName = newName;
             
             if (rsvpState.formData.weddingGuestNames[0] === oldName || !rsvpState.formData.weddingGuestNames[0]) {
@@ -29,14 +29,29 @@ export function initRSVPEvents() {
                 rsvpState.formData.partyGuestNames[0] = newName;
             }
             updateView();
-        });
+        };
+
+        inputName.addEventListener('input', (e) => handleNameChange(e.target.value));
+        inputName.addEventListener('change', (e) => handleNameChange(e.target.value));
+        
+        // Handle browser autofill/restoration on reload
+        if (inputName.value) {
+            handleNameChange(inputName.value);
+        }
     }
 
     if (inputEmail) {
-        inputEmail.addEventListener('input', (e) => {
-            rsvpState.formData.email = e.target.value;
+        const handleEmailChange = (val) => {
+            rsvpState.formData.email = val;
             updateView();
-        });
+        };
+
+        inputEmail.addEventListener('input', (e) => handleEmailChange(e.target.value));
+        inputEmail.addEventListener('change', (e) => handleEmailChange(e.target.value));
+
+        if (inputEmail.value) {
+            handleEmailChange(inputEmail.value);
+        }
     }
 
     if (dietaryNotes) {
@@ -147,6 +162,9 @@ export function initRSVPEvents() {
                 btnSubmit.disabled = false;
                 return;
             }
+
+            // Add submission date and time
+            rsvpState.formData.submissionDate = new Date().toISOString();
 
             const result = await submitRSVP(rsvpState.formData, recaptchaResponse);
 

@@ -65,18 +65,38 @@ window.recaptchaOnLoad = function() {
 window.initRecaptchaGlobal = initRecaptcha;
 
 export function initRSVPEvents() {
+    const rsvpForm = document.getElementById('rsvpForm');
+    if (!rsvpForm) return;
+
+    setupInputHandlers();
+    setupAttendanceHandlers();
+    setupCounterHandlers();
+    setupNavigationHandlers(rsvpForm);
+    setupSubmitHandler(rsvpForm);
+}
+
+function setupAutofillPolling(inputElement, stateValueGetter, changeHandler) {
+    if (!inputElement) return;
+
+    if (inputElement.value) {
+        changeHandler(inputElement.value);
+    }
+    
+    const checkAutoFill = setInterval(() => {
+        if (inputElement.value && stateValueGetter() !== inputElement.value) {
+            changeHandler(inputElement.value);
+            clearInterval(checkAutoFill);
+        }
+    }, 200);
+
+    setTimeout(() => clearInterval(checkAutoFill), 5000);
+}
+
+function setupInputHandlers() {
     const inputName = document.getElementById('rsvpFullName');
     const inputEmail = document.getElementById('rsvpEmail');
-    const btnNext1 = document.getElementById('btnNext1');
-    const btnNext2 = document.getElementById('btnNext2');
-    const btnPrev2 = document.getElementById('btnPrev2');
-    const btnPrev3 = document.getElementById('btnPrev3');
-    const btnEditResponse = document.getElementById('btnEditResponse');
-    const rsvpForm = document.getElementById('rsvpForm');
     const dietaryNotes = document.getElementById('rsvpDietary');
     const messageTxt = document.getElementById('rsvpMessageTxt');
-    
-    if (!rsvpForm) return;
 
     if (inputName) {
         const handleNameChange = (val) => {
@@ -95,22 +115,7 @@ export function initRSVPEvents() {
 
         inputName.addEventListener('input', (e) => handleNameChange(e.target.value));
         inputName.addEventListener('change', (e) => handleNameChange(e.target.value));
-        
-        // Handle browser autofill/restoration on reload - check IMMEDIATELY and also poll
-        if (inputName.value) {
-            handleNameChange(inputName.value);
-        }
-        
-        // Also poll to catch autofill that happens slightly after page load
-        const checkAutoFill = setInterval(() => {
-            if (inputName.value && rsvpState.formData.fullName !== inputName.value) {
-                handleNameChange(inputName.value);
-                clearInterval(checkAutoFill);
-            }
-        }, 200);
-
-        // Clear interval after 5 seconds if still nothing (avoids leaks)
-        setTimeout(() => clearInterval(checkAutoFill), 5000);
+        setupAutofillPolling(inputName, () => rsvpState.formData.fullName, handleNameChange);
     }
 
     if (inputEmail) {
@@ -121,22 +126,7 @@ export function initRSVPEvents() {
 
         inputEmail.addEventListener('input', (e) => handleEmailChange(e.target.value));
         inputEmail.addEventListener('change', (e) => handleEmailChange(e.target.value));
-
-        // Handle browser autofill/restoration on reload - check IMMEDIATELY and also poll
-        if (inputEmail.value) {
-            handleEmailChange(inputEmail.value);
-        }
-        
-        // Also poll to catch autofill that happens slightly after page load
-        const checkAutoFillEmail = setInterval(() => {
-            if (inputEmail.value && rsvpState.formData.email !== inputEmail.value) {
-                handleEmailChange(inputEmail.value);
-                clearInterval(checkAutoFillEmail);
-            }
-        }, 200);
-
-        // Clear interval after 5 seconds if still nothing (avoids leaks)
-        setTimeout(() => clearInterval(checkAutoFillEmail), 5000);
+        setupAutofillPolling(inputEmail, () => rsvpState.formData.email, handleEmailChange);
     }
 
     if (dietaryNotes) {
@@ -150,7 +140,9 @@ export function initRSVPEvents() {
             rsvpState.formData.message = e.target.value;
         });
     }
+}
 
+function setupAttendanceHandlers() {
     document.querySelectorAll('.attendance-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const type = btn.getAttribute('data-type');
@@ -165,7 +157,9 @@ export function initRSVPEvents() {
             updateView();
         });
     });
+}
 
+function setupCounterHandlers() {
     document.querySelectorAll('.counter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
             const target = btn.getAttribute('data-target');
@@ -189,6 +183,13 @@ export function initRSVPEvents() {
             renderGuestInputs(target);
         });
     });
+}
+
+function setupNavigationHandlers(rsvpForm) {
+    const btnNext1 = document.getElementById('btnNext1');
+    const btnNext2 = document.getElementById('btnNext2');
+    const btnPrev2 = document.getElementById('btnPrev2');
+    const btnPrev3 = document.getElementById('btnPrev3');
 
     if (btnNext1) btnNext1.addEventListener('click', () => {
         if (rsvpForm.checkValidity()) {
@@ -201,63 +202,63 @@ export function initRSVPEvents() {
     if (btnNext2) btnNext2.addEventListener('click', () => { setStep(3); updateView(); });
     if (btnPrev2) btnPrev2.addEventListener('click', () => { setStep(1); updateView(); });
     if (btnPrev3) btnPrev3.addEventListener('click', () => { setStep(2); updateView(); });
+}
 
-    if (rsvpForm) {
-        rsvpForm.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            // Only allow submission on the final step (Step 3)
-            if (rsvpState.step < 3) {
-                if (rsvpState.step === 1 && !btnNext1.disabled) {
-                    setStep(2);
-                    updateView();
-                } else if (rsvpState.step === 2 && !btnNext2.disabled) {
-                    setStep(3);
-                    updateView();
-                }
-                return;
-            }
-
-            const btnSubmit = document.getElementById('btnSubmit');
-            const errorMsg = document.getElementById('rsvpErrorMsg');
-            if (errorMsg) errorMsg.classList.add('hidden'); // Hide previous errors
-
-            const origHtml = btnSubmit.innerHTML;
-            btnSubmit.innerHTML = 'Sending...';
-            btnSubmit.disabled = true;
-
-            const isDev = window.location.hostname.includes('dev') || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '5.252.55.202' || window.location.port === '3000' || window.location.port === '8080';
-
-            // Get reCAPTCHA token (async for invisible widget)
-            let recaptchaResponse = '';
-            if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
-                recaptchaResponse = await getRecaptchaToken();
-            } else if (typeof grecaptcha !== 'undefined') {
-                // Fallback for non-invisible or Netlify case
-                recaptchaResponse = grecaptcha.getResponse() || '';
-            }
-
-            if (!recaptchaResponse) {
-                showRSVPError('Please complete the security verification (CAPTCHA).');
-                btnSubmit.innerHTML = origHtml;
-                btnSubmit.disabled = false;
-                return;
-            }
-
-            // Add submission date and time
-            rsvpState.formData.submissionDate = new Date().toISOString();
-
-            const result = await submitRSVP(rsvpState.formData, recaptchaResponse);
-
-            if (result.success) {
-                setSubmitted(true);
+function setupSubmitHandler(rsvpForm) {
+    rsvpForm.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        
+        // Only allow submission on the final step (Step 3)
+        if (rsvpState.step < 3) {
+            const btnNext1 = document.getElementById('btnNext1');
+            const btnNext2 = document.getElementById('btnNext2');
+            if (rsvpState.step === 1 && btnNext1 && !btnNext1.disabled) {
+                setStep(2);
                 updateView();
-            } else {
-                showRSVPError('Something went wrong. Please try again or contact us directly.');
+            } else if (rsvpState.step === 2 && btnNext2 && !btnNext2.disabled) {
+                setStep(3);
+                updateView();
             }
-            
+            return;
+        }
+
+        const btnSubmit = document.getElementById('btnSubmit');
+        const errorMsg = document.getElementById('rsvpErrorMsg');
+        if (errorMsg) errorMsg.classList.add('hidden'); // Hide previous errors
+
+        const origHtml = btnSubmit.innerHTML;
+        btnSubmit.innerHTML = 'Sending...';
+        btnSubmit.disabled = true;
+
+        // Get reCAPTCHA token (async for invisible widget)
+        let recaptchaResponse = '';
+        if (typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
+            recaptchaResponse = await getRecaptchaToken();
+        } else if (typeof grecaptcha !== 'undefined') {
+            // Fallback for non-invisible or Netlify case
+            recaptchaResponse = grecaptcha.getResponse() || '';
+        }
+
+        if (!recaptchaResponse) {
+            showRSVPError('Please complete the security verification (CAPTCHA).');
             btnSubmit.innerHTML = origHtml;
             btnSubmit.disabled = false;
-        });
-    }
+            return;
+        }
+
+        // Add submission date and time
+        rsvpState.formData.submissionDate = new Date().toISOString();
+
+        const result = await submitRSVP(rsvpState.formData, recaptchaResponse);
+
+        if (result.success) {
+            setSubmitted(true);
+            updateView();
+        } else {
+            showRSVPError('Something went wrong. Please try again or contact us directly.');
+        }
+        
+        btnSubmit.innerHTML = origHtml;
+        btnSubmit.disabled = false;
+    });
 }

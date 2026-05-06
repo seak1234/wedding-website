@@ -2,7 +2,6 @@ import { rsvpState } from './state.js';
 
 export async function submitRSVP(formData, recaptchaResponse) {
     try {
-        const isDev = window.location.hostname.includes('dev') || window.location.port === '8080' || window.location.hostname === '5.252.55.202';
         const submissionData = {
             'form-name': 'rsvp',
             'g-recaptcha-response': recaptchaResponse,

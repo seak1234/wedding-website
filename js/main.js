@@ -6,7 +6,7 @@ import { initCountdown } from './modules/countdown.js';
 import { initMap } from './modules/map.js';
 import { initParticles } from './modules/particles.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+function initAll() {
     // 1. Initialize Site-Wide Scripts
     initNavigation();
     initAnimations();
@@ -21,4 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
         initRSVPEvents();
         updateView();
     }
-});
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAll);
+} else {
+    initAll();
+}

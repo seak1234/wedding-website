@@ -23,7 +23,6 @@ export async function submitRSVP(formData, recaptchaResponse) {
             .join('&');
 
         // In dev, post to /rsvp (form-handler). In prod, post to / (Netlify Forms).
-        const isDev = window.location.hostname.includes('dev') || window.location.port === '8080' || window.location.hostname === '5.252.55.202';
         const endpoint = isDev ? '/rsvp' : '/';
         const response = await fetch(endpoint, {
             method: 'POST',

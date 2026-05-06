@@ -126,22 +126,23 @@ export function initRSVPEvents() {
             btnSubmit.innerHTML = 'Sending...';
             btnSubmit.disabled = true;
 
-            // Skip reCAPTCHA check in development (dev subdomain or port 8080)
-            // Also skip if no captcha widget is rendered on the page (e.g., not configured)
-            // Get reCAPTCHA v3 token
+            // Get Netlify reCAPTCHA v2 token
             let recaptchaResponse = '';
-            try {
-                recaptchaResponse = await new Promise((resolve) => {
-                    grecaptcha.ready(() => {
-                        grecaptcha.execute('6Lf9RdwsAAAAAOCULFTRqu0u87F3jNzl_EgP8qED', {action: 'submit'}).then(resolve);
-                    });
-                });
-            } catch (err) {
-                console.error('reCAPTCHA v3 error:', err);
+            const recaptchaInput = document.getElementById('g-recaptcha-response');
+            if (recaptchaInput) {
+                recaptchaResponse = recaptchaInput.value;
+            } else if (typeof grecaptcha !== 'undefined') {
+                try {
+                    recaptchaResponse = grecaptcha.getResponse();
+                } catch (e) {
+                    console.warn('reCAPTCHA getResponse failed', e);
+                }
             }
 
-            if (!recaptchaResponse) {
-                showRSVPError('Security verification failed. Please refresh and try again.');
+            const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.port === '3000' || window.location.port === '8080';
+
+            if (!recaptchaResponse && !isDev) {
+                showRSVPError('Please complete the security verification (CAPTCHA).');
                 btnSubmit.innerHTML = origHtml;
                 btnSubmit.disabled = false;
                 return;

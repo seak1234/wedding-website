@@ -36,7 +36,7 @@ export function initParticles() {
                 animation: {
                     enable: true,
                     speed: 1,
-                    minimumValue: 15,
+                    minimumValue: 5,
                     sync: false
                 }
             },
@@ -83,7 +83,7 @@ export function initParticles() {
                         size: {
                             value: { min: 1, max: 12 },
                             animation: {
-                                minimumValue: 7.5
+                                minimumValue: 0.5
                             }
                         }
                     }

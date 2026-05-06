@@ -4,9 +4,11 @@ export async function submitRSVP(formData) {
     try {
         // Prepare data for Netlify Form submission
         // Flatten guest name arrays into comma-separated strings for the backend
+        const isDev = window.location.hostname.includes('dev') || window.location.port === '8080';
+        const recaptchaResponse = isDev ? 'dev-bypass-token' : document.querySelector('[name="g-recaptcha-response"]')?.value || '';
         const submissionData = {
             'form-name': 'rsvp',
-            'g-recaptcha-response': document.querySelector('[name="g-recaptcha-response"]')?.value || '',
+            'g-recaptcha-response': recaptchaResponse,
             'full_name': formData.fullName,
             'email': formData.email,
             'attending_wedding': formData.attendingWedding,
@@ -23,7 +25,9 @@ export async function submitRSVP(formData) {
             .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(submissionData[key]))
             .join('&');
 
-        const response = await fetch('/', {
+        // In dev, post to /rsvp (form-handler). In prod, post to / (Netlify Forms).
+        const endpoint = isDev ? '/rsvp' : '/';
+        const response = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
             body: body

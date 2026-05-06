@@ -343,7 +343,7 @@
                         </div>
 
                         <div class="form-group recaptcha-wrapper">
-                            <div data-netlify-recaptcha="true"></div>
+                            <div id="recaptcha-container"></div>
                         </div>
 
                         <div class="rsvp-btn-group">
@@ -826,7 +826,24 @@
             }
         };
     </script>
-    <script src="https://www.google.com/recaptcha/api.js?render=6Lf9RdwsAAAAAOCULFTRqu0u87F3jNzl_EgP8qED"></script>
+    <script>
+        // Define recaptchaOnLoad globally BEFORE the reCAPTCHA API loads
+        window.recaptchaOnLoad = function() {
+            if (window.initRecaptchaGlobal) {
+                window.initRecaptchaGlobal();
+            } else {
+                // Poll until module has set up initRecaptchaGlobal
+                var checkInterval = setInterval(function() {
+                    if (window.initRecaptchaGlobal) {
+                        clearInterval(checkInterval);
+                        window.initRecaptchaGlobal();
+                    }
+                }, 100);
+                setTimeout(function() { clearInterval(checkInterval); }, 5000);
+            }
+        };
+    </script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=recaptchaOnLoad" async defer></script>
     <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
     <script type="module" src="js/main.js"></script>
 </body>

@@ -2,6 +2,68 @@ import { rsvpState, setStep, setSubmitted } from './state.js';
 import { updateView, renderGuestInputs, showRSVPError } from './ui.js';
 import { submitRSVP } from './api.js';
 
+let recaptchaWidgetId = null;
+
+function initRecaptcha() {
+    const container = document.getElementById('recaptcha-container');
+    if (!container || typeof grecaptcha === 'undefined') return;
+    
+    const sitekey = '6Lf9RdwsAAAAAOCULFTRqu0u87F3jNzl_EgP8qED'; // Hardcoded for dev environment
+    if (!sitekey) return;
+    
+    // Render reCAPTCHA v2 invisible widget
+    recaptchaWidgetId = grecaptcha.render(container, {
+        sitekey: sitekey,
+        size: 'invisible',
+        badge: 'inline', // inline badge so it doesn't overlay other elements
+        callback: onRecaptchaSuccess,
+        'expired-callback': onRecaptchaExpired,
+        'error-callback': onRecaptchaError
+    });
+}
+
+function onRecaptchaSuccess(token) {
+    // Token is automatically handled, but we can store it if needed
+    console.log('reCAPTCHA verified');
+}
+
+function onRecaptchaExpired() {
+    console.warn('reCAPTCHA token expired');
+}
+
+function onRecaptchaError(error) {
+    console.error('reCAPTCHA error:', error);
+}
+
+function getRecaptchaToken() {
+    return new Promise((resolve) => {
+        if (typeof grecaptcha === 'undefined') {
+            resolve('');
+            return;
+        }
+        
+        // If we have a rendered widget, execute it to get a fresh token
+        if (recaptchaWidgetId !== null) {
+            grecaptcha.execute(recaptchaWidgetId, { action: 'rsvp' }).then(resolve).catch((err) => {
+                console.warn('reCAPTCHA execute failed, trying getResponse:', err);
+                // Fallback to getResponse for non-invisible or already-verified tokens
+                resolve(grecaptcha.getResponse(recaptchaWidgetId) || '');
+            });
+        } else {
+            // Fallback: try to get any available response
+            resolve(grecaptcha.getResponse() || '');
+        }
+    });
+}
+
+// Initialize reCAPTCHA when the script loads
+window.recaptchaOnLoad = function() {
+    initRecaptcha();
+};
+
+// Also expose initRecaptcha globally for external callers (like the inline onload)
+window.initRecaptchaGlobal = initRecaptcha;
+
 export function initRSVPEvents() {
     const inputName = document.getElementById('rsvpFullName');
     const inputEmail = document.getElementById('rsvpEmail');
@@ -141,20 +203,16 @@ export function initRSVPEvents() {
             btnSubmit.innerHTML = 'Sending...';
             btnSubmit.disabled = true;
 
-            // Get Netlify reCAPTCHA v2 token
-            let recaptchaResponse = '';
-            const recaptchaInput = document.getElementById('g-recaptcha-response');
-            if (recaptchaInput) {
-                recaptchaResponse = recaptchaInput.value;
-            } else if (typeof grecaptcha !== 'undefined') {
-                try {
-                    recaptchaResponse = grecaptcha.getResponse();
-                } catch (e) {
-                    console.warn('reCAPTCHA getResponse failed', e);
-                }
-            }
+            const isDev = window.location.hostname.includes('dev') || window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.hostname === '5.252.55.202' || window.location.port === '3000' || window.location.port === '8080';
 
-            const isDev = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.port === '3000' || window.location.port === '8080';
+            // Get reCAPTCHA token (async for invisible widget)
+            let recaptchaResponse = '';
+            if (isDev && typeof grecaptcha !== 'undefined' && recaptchaWidgetId !== null) {
+                recaptchaResponse = await getRecaptchaToken();
+            } else if (typeof grecaptcha !== 'undefined') {
+                // Fallback for non-invisible or Netlify case
+                recaptchaResponse = grecaptcha.getResponse() || '';
+            }
 
             if (!recaptchaResponse && !isDev) {
                 showRSVPError('Please complete the security verification (CAPTCHA).');

@@ -97,9 +97,15 @@ export function initRSVPEvents() {
         inputName.addEventListener('change', (e) => handleNameChange(e.target.value));
         
         // Handle browser autofill/restoration on reload
-        if (inputName.value) {
-            handleNameChange(inputName.value);
-        }
+        const checkAutoFill = setInterval(() => {
+            if (inputName.value) {
+                handleNameChange(inputName.value);
+                clearInterval(checkAutoFill);
+            }
+        }, 500);
+
+        // Clear interval after 5 seconds if still nothing (avoids leaks)
+        setTimeout(() => clearInterval(checkAutoFill), 5000);
     }
 
     if (inputEmail) {
@@ -111,9 +117,16 @@ export function initRSVPEvents() {
         inputEmail.addEventListener('input', (e) => handleEmailChange(e.target.value));
         inputEmail.addEventListener('change', (e) => handleEmailChange(e.target.value));
 
-        if (inputEmail.value) {
-            handleEmailChange(inputEmail.value);
-        }
+        // Handle browser autofill/restoration on reload
+        const checkAutoFill = setInterval(() => {
+            if (inputEmail.value) {
+                handleEmailChange(inputEmail.value);
+                clearInterval(checkAutoFill);
+            }
+        }, 500);
+
+        // Clear interval after 5 seconds if still nothing (avoids leaks)
+        setTimeout(() => clearInterval(checkAutoFill), 5000);
     }
 
     if (dietaryNotes) {

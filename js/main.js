@@ -6,20 +6,30 @@ import { initCountdown } from './modules/countdown.js';
 import { initMap } from './modules/map.js';
 import { initParticles } from './modules/particles.js';
 
+function safeInit(fn, name) {
+    try {
+        fn();
+    } catch (e) {
+        console.error(`Error initializing ${name}:`, e);
+    }
+}
+
 function initAll() {
     // 1. Initialize Site-Wide Scripts
-    initNavigation();
-    initAnimations();
-    initCountdown();
-    initMap();
-    initParticles();
+    safeInit(initNavigation, 'Navigation');
+    safeInit(initAnimations, 'Animations');
+    safeInit(initCountdown, 'Countdown');
+    safeInit(initMap, 'Map');
+    safeInit(initParticles, 'Particles');
 
     // 2. Initialize RSVP Form Logic
     const rsvpForm = document.getElementById('rsvpForm');
     if (rsvpForm) {
-        initUIElements();
-        initRSVPEvents();
-        updateView();
+        safeInit(() => {
+            initUIElements();
+            initRSVPEvents();
+            updateView();
+        }, 'RSVP Logic');
     }
 }
 

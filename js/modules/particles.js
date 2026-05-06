@@ -1,6 +1,24 @@
+let retries = 0;
+
 export function initParticles() {
     if (typeof tsParticles === 'undefined') {
-        console.warn('tsParticles library not loaded.');
+        if (retries < 50) {
+            retries++;
+            setTimeout(initParticles, 50);
+        } else {
+            console.warn('tsParticles library not loaded.');
+        }
+        return;
+    }
+
+    const container = document.getElementById('tsparticles');
+    if (!container) return;
+
+    if (container.offsetWidth === 0 || container.offsetHeight === 0) {
+        if (retries < 50) {
+            retries++;
+            setTimeout(initParticles, 50);
+        }
         return;
     }
 

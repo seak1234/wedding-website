@@ -126,8 +126,10 @@ export function initRSVPEvents() {
             btnSubmit.innerHTML = 'Sending...';
             btnSubmit.disabled = true;
 
-            const recaptchaResponse = document.querySelector('[name="g-recaptcha-response"]')?.value;
-            if (!recaptchaResponse) {
+            // Skip reCAPTCHA check in development (dev subdomain or port 8080)
+            const isDev = window.location.hostname.includes('dev') || window.location.port === '8080';
+            const recaptchaResponse = isDev ? 'dev-bypass-token' : document.querySelector('[name="g-recaptcha-response"]')?.value;
+            if (!isDev && !recaptchaResponse) {
                 showRSVPError('Please complete the reCAPTCHA verification.');
                 btnSubmit.innerHTML = origHtml;
                 btnSubmit.disabled = false;

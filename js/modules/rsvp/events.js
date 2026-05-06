@@ -127,9 +127,11 @@ export function initRSVPEvents() {
             btnSubmit.disabled = true;
 
             // Skip reCAPTCHA check in development (dev subdomain or port 8080)
+            // Also skip if no captcha widget is rendered on the page (e.g., not configured)
             const isDev = window.location.hostname.includes('dev') || window.location.port === '8080';
+            const hasCaptchaWidget = !!document.querySelector('.g-recaptcha, [data-netlify-recaptcha]');
             const recaptchaResponse = isDev ? 'dev-bypass-token' : document.querySelector('[name="g-recaptcha-response"]')?.value;
-            if (!isDev && !recaptchaResponse) {
+            if (!isDev && hasCaptchaWidget && !recaptchaResponse) {
                 showRSVPError('Please complete the reCAPTCHA verification.');
                 btnSubmit.innerHTML = origHtml;
                 btnSubmit.disabled = false;

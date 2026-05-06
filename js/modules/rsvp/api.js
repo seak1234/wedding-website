@@ -1,7 +1,15 @@
 import { rsvpState } from './state.js';
 
+/**
+ * Submits the gathered RSVP form data to the backend or serverless function.
+ * 
+ * @param {Object} formData - The structured form data collected from the RSVP state.
+ * @param {string} recaptchaResponse - The verification token obtained from Google reCAPTCHA.
+ * @returns {Promise<{success: boolean, error?: string}>} A promise resolving to an object indicating success or failure.
+ */
 export async function submitRSVP(formData, recaptchaResponse) {
     try {
+        // Format the submission data to match the expected fields on the server/Make.com integration
         const submissionData = {
             'form-name': 'rsvp',
             'g-recaptcha-response': recaptchaResponse,
@@ -18,6 +26,7 @@ export async function submitRSVP(formData, recaptchaResponse) {
             'submission_date': formData.submissionDate
         };
 
+        // Encode the payload as application/x-www-form-urlencoded to mimic a standard HTML form submission
         const body = Object.keys(submissionData)
             .map(key => encodeURIComponent(key) + '=' + encodeURIComponent(submissionData[key]))
             .join('&');

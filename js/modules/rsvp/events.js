@@ -4,6 +4,10 @@ import { submitRSVP } from './api.js';
 
 let recaptchaWidgetId = null;
 
+/**
+ * Initializes the invisible Google reCAPTCHA v2 widget on the page.
+ * Hooks up success, expired, and error callbacks to handle the reCAPTCHA lifecycle.
+ */
 function initRecaptcha() {
     const container = document.getElementById('recaptcha-container');
     if (!container || typeof grecaptcha === 'undefined') return;
@@ -22,19 +26,39 @@ function initRecaptcha() {
     });
 }
 
+/**
+ * Callback triggered upon successful reCAPTCHA verification.
+ * 
+ * @param {string} token - The generated reCAPTCHA token.
+ */
 function onRecaptchaSuccess(token) {
     // Token is automatically handled, but we can store it if needed
     console.log('reCAPTCHA verified');
 }
 
+/**
+ * Callback triggered if the reCAPTCHA verification expires.
+ */
 function onRecaptchaExpired() {
     console.warn('reCAPTCHA token expired');
 }
 
+/**
+ * Callback triggered if the reCAPTCHA verification encounters an error.
+ * 
+ * @param {Error} error - The reCAPTCHA error details.
+ */
 function onRecaptchaError(error) {
     console.error('reCAPTCHA error:', error);
 }
 
+/**
+ * Retrieves the reCAPTCHA verification token.
+ * If an invisible widget is initialized, it will execute the check to get a fresh token.
+ * Falls back to obtaining a previously generated response if available.
+ * 
+ * @returns {Promise<string>} A promise resolving to the reCAPTCHA token string.
+ */
 function getRecaptchaToken() {
     return new Promise((resolve) => {
         if (typeof grecaptcha === 'undefined') {
@@ -64,6 +88,10 @@ window.recaptchaOnLoad = function() {
 // Also expose initRecaptcha globally for external callers (like the inline onload)
 window.initRecaptchaGlobal = initRecaptcha;
 
+/**
+ * Main entry point to initialize all event listeners for the RSVP form interactions.
+ * Binds inputs, attendance toggles, counters, and navigation components.
+ */
 export function initRSVPEvents() {
     const rsvpForm = document.getElementById('rsvpForm');
     if (!rsvpForm) return;
@@ -75,6 +103,14 @@ export function initRSVPEvents() {
     setupSubmitHandler(rsvpForm);
 }
 
+/**
+ * Polls an input element to detect browser autofill changes.
+ * Some browsers do not fire 'input' or 'change' events when autofilling.
+ * 
+ * @param {HTMLElement} inputElement - The input DOM element to poll.
+ * @param {Function} stateValueGetter - Function returning the current state value for comparison.
+ * @param {Function} changeHandler - Function to invoke when a change is detected.
+ */
 function setupAutofillPolling(inputElement, stateValueGetter, changeHandler) {
     if (!inputElement) return;
 
@@ -92,6 +128,10 @@ function setupAutofillPolling(inputElement, stateValueGetter, changeHandler) {
     setTimeout(() => clearInterval(checkAutoFill), 5000);
 }
 
+/**
+ * Sets up event listeners for standard text inputs (name, email, dietary notes, messages).
+ * Synchronizes input changes with the central rsvpState.
+ */
 function setupInputHandlers() {
     const inputName = document.getElementById('rsvpFullName');
     const inputEmail = document.getElementById('rsvpEmail');
@@ -142,6 +182,9 @@ function setupInputHandlers() {
     }
 }
 
+/**
+ * Sets up click listeners for the attendance toggle buttons (e.g., 'yes'/'no' for wedding and party).
+ */
 function setupAttendanceHandlers() {
     document.querySelectorAll('.attendance-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -159,6 +202,10 @@ function setupAttendanceHandlers() {
     });
 }
 
+/**
+ * Sets up click listeners for the guest counter increment/decrement buttons (+ / -).
+ * Adjusts the guest count in state and triggers a re-render of guest inputs.
+ */
 function setupCounterHandlers() {
     document.querySelectorAll('.counter-btn').forEach(btn => {
         btn.addEventListener('click', () => {
@@ -185,6 +232,12 @@ function setupCounterHandlers() {
     });
 }
 
+/**
+ * Sets up click listeners for the previous and next step navigation buttons.
+ * Enforces form validation before moving from step 1 to step 2.
+ * 
+ * @param {HTMLFormElement} rsvpForm - The main form element reference.
+ */
 function setupNavigationHandlers(rsvpForm) {
     const btnNext1 = document.getElementById('btnNext1');
     const btnNext2 = document.getElementById('btnNext2');
@@ -204,6 +257,12 @@ function setupNavigationHandlers(rsvpForm) {
     if (btnPrev3) btnPrev3.addEventListener('click', () => { setStep(2); updateView(); });
 }
 
+/**
+ * Attaches the main submit event listener to the RSVP form.
+ * Orchestrates final validation, token retrieval, submission status changes, and network API calls.
+ * 
+ * @param {HTMLFormElement} rsvpForm - The main form element reference.
+ */
 function setupSubmitHandler(rsvpForm) {
     rsvpForm.addEventListener('submit', async (e) => {
         e.preventDefault();

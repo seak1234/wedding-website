@@ -2,6 +2,10 @@ import { rsvpState } from './state.js';
 
 let dom = {};
 
+/**
+ * Caches DOM element references for the RSVP form.
+ * This optimizes performance by avoiding repeated DOM queries during UI updates.
+ */
 export function initUIElements() {
     dom = {
         steps: [
@@ -27,6 +31,11 @@ export function initUIElements() {
     };
 }
 
+/**
+ * Displays a custom error message to the user and scrolls the message into view.
+ * 
+ * @param {string} message - The error message text to display.
+ */
 export function showRSVPError(message) {
     if (!dom.errorMsg) {
         // Create it if it doesn't exist
@@ -45,6 +54,10 @@ export function showRSVPError(message) {
     dom.errorMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+/**
+ * Master function to synchronize the UI with the current global RSVP state.
+ * It updates step visibility, progress, and specific step contents.
+ */
 export function updateView() {
     if (!dom.steps[0]) return; // form missing
 
@@ -66,6 +79,9 @@ export function updateView() {
     else if (rsvpState.step === 3) syncStep3UI();
 }
 
+/**
+ * Hides the RSVP form steps and displays the final success message after successful submission.
+ */
 function syncSuccessUI() {
     dom.steps[0].classList.add('hidden');
     dom.steps[1].classList.add('hidden');
@@ -77,12 +93,18 @@ function syncSuccessUI() {
     updateSuccessMessage();
 }
 
+/**
+ * Updates the visual progress bar based on the current step out of 3 total steps.
+ */
 function updateProgress() {
     if (dom.progressBar) {
         dom.progressBar.style.width = `${(rsvpState.step / 3) * 100}%`;
     }
 }
 
+/**
+ * Shows the current step container and hides all other step containers based on rsvpState.step.
+ */
 function updateStepVisibility() {
     dom.steps.forEach((el, index) => {
         if (index < 3) {
@@ -95,6 +117,10 @@ function updateStepVisibility() {
     });
 }
 
+/**
+ * Synchronizes the UI elements of Step 1 (Personal Info) with the current state data.
+ * Ensures that the Next button is appropriately disabled or enabled based on input validity.
+ */
 function syncStep1UI() {
     if (dom.inputName && dom.inputName.value !== rsvpState.formData.fullName) {
         dom.inputName.value = rsvpState.formData.fullName;
@@ -110,6 +136,10 @@ function syncStep1UI() {
     }
 }
 
+/**
+ * Synchronizes the UI elements of Step 2 (Attendance) with the current state data.
+ * Updates button active states based on 'yes'/'no' selections.
+ */
 function syncStep2UI() {
     document.querySelectorAll('.attendance-btn').forEach(btn => {
         const type = btn.getAttribute('data-type');
@@ -126,6 +156,10 @@ function syncStep2UI() {
     if (dom.btnNext2) dom.btnNext2.disabled = !rsvpState.formData.attendingWedding || !rsvpState.formData.attendingParty;
 }
 
+/**
+ * Synchronizes the UI elements of Step 3 (Details & Guest List) with the current state data.
+ * Populates text areas and ensures the correct guest inputs are rendered.
+ */
 function syncStep3UI() {
     const dietaryNotes = document.getElementById('rsvpDietary');
     const messageTxt = document.getElementById('rsvpMessageTxt');
@@ -141,6 +175,10 @@ function syncStep3UI() {
     renderGuestInputs('party');
 }
 
+/**
+ * Adjusts the visibility of the guest list sections and dietary field in Step 3 
+ * depending on whether the user is attending the wedding and/or party.
+ */
 function updateStep3Displays() {
     const aW = rsvpState.formData.attendingWedding === 'yes';
     const aP = rsvpState.formData.attendingParty === 'yes';
@@ -165,6 +203,10 @@ function updateStep3Displays() {
     }
 }
 
+/**
+ * Dynamically updates the success message text depending on whether the user 
+ * has chosen to attend or decline the invitations.
+ */
 function updateSuccessMessage() {
     const aW = rsvpState.formData.attendingWedding === 'yes';
     const aP = rsvpState.formData.attendingParty === 'yes';
@@ -180,6 +222,12 @@ function updateSuccessMessage() {
     }
 }
 
+/**
+ * Generates or updates the dynamic input fields for guest names based on the selected guest count.
+ * Re-renders inputs when counts change but avoids breaking focus when inputting names.
+ * 
+ * @param {string} type - The type of event ('wedding' or 'party') to render inputs for.
+ */
 export function renderGuestInputs(type) {
     const container = type === 'wedding' ? dom.containerWedding : dom.containerParty;
     const count = type === 'wedding' ? rsvpState.formData.weddingGuestsCount : rsvpState.formData.partyGuestsCount;

@@ -48,16 +48,8 @@ export function showRSVPError(message) {
 export function updateView() {
     if (!dom.steps[0]) return; // form missing
 
-    // Success State
     if (rsvpState.submitted) {
-        dom.steps[0].classList.add('hidden');
-        dom.steps[1].classList.add('hidden');
-        dom.steps[2].classList.add('hidden');
-        dom.steps[3].classList.remove('hidden');
-        if (dom.progressBar) {
-            dom.progressBar.parentElement.style.display = 'none';
-        }
-        updateSuccessMessage();
+        syncSuccessUI();
         return;
     } else {
         if (dom.progressBar) {
@@ -66,12 +58,32 @@ export function updateView() {
         dom.steps[3].classList.add('hidden');
     }
 
-    // Progress Bar (out of 3 steps)
+    updateProgress();
+    updateStepVisibility();
+
+    if (rsvpState.step === 1) syncStep1UI();
+    else if (rsvpState.step === 2) syncStep2UI();
+    else if (rsvpState.step === 3) syncStep3UI();
+}
+
+function syncSuccessUI() {
+    dom.steps[0].classList.add('hidden');
+    dom.steps[1].classList.add('hidden');
+    dom.steps[2].classList.add('hidden');
+    dom.steps[3].classList.remove('hidden');
+    if (dom.progressBar) {
+        dom.progressBar.parentElement.style.display = 'none';
+    }
+    updateSuccessMessage();
+}
+
+function updateProgress() {
     if (dom.progressBar) {
         dom.progressBar.style.width = `${(rsvpState.step / 3) * 100}%`;
     }
+}
 
-    // Steps
+function updateStepVisibility() {
     dom.steps.forEach((el, index) => {
         if (index < 3) {
             if (index + 1 === rsvpState.step) {
@@ -81,52 +93,52 @@ export function updateView() {
             }
         }
     });
+}
 
-    // Validation logic to enable Next buttons
-    if (rsvpState.step === 1) {
-        // Sync inputs from state if they differ
-        if (dom.inputName && dom.inputName.value !== rsvpState.formData.fullName) {
-            dom.inputName.value = rsvpState.formData.fullName;
-        }
-        if (dom.inputEmail && dom.inputEmail.value !== rsvpState.formData.email) {
-            dom.inputEmail.value = rsvpState.formData.email;
-        }
-
-        if (dom.btnNext1) {
-            const isNameValid = rsvpState.formData.fullName.trim() !== '';
-            const isEmailValid = dom.inputEmail ? dom.inputEmail.checkValidity() : true;
-            dom.btnNext1.disabled = !isNameValid || !isEmailValid;
-        }
-    } else if (rsvpState.step === 2) {
-        // Sync attendance buttons active state
-        document.querySelectorAll('.attendance-btn').forEach(btn => {
-            const type = btn.getAttribute('data-type');
-            const val = btn.getAttribute('data-val');
-            const stateVal = type === 'wedding' ? rsvpState.formData.attendingWedding : rsvpState.formData.attendingParty;
-            
-            if (stateVal === val) {
-                btn.classList.add('active');
-            } else {
-                btn.classList.remove('active');
-            }
-        });
-
-        if (dom.btnNext2) dom.btnNext2.disabled = !rsvpState.formData.attendingWedding || !rsvpState.formData.attendingParty;
-    } else if (rsvpState.step === 3) {
-        // Sync dietary and message from state
-        const dietaryNotes = document.getElementById('rsvpDietary');
-        const messageTxt = document.getElementById('rsvpMessageTxt');
-        if (dietaryNotes && dietaryNotes.value !== rsvpState.formData.dietaryNotes) {
-            dietaryNotes.value = rsvpState.formData.dietaryNotes;
-        }
-        if (messageTxt && messageTxt.value !== rsvpState.formData.message) {
-            messageTxt.value = rsvpState.formData.message;
-        }
-
-        updateStep3Displays();
-        renderGuestInputs('wedding');
-        renderGuestInputs('party');
+function syncStep1UI() {
+    if (dom.inputName && dom.inputName.value !== rsvpState.formData.fullName) {
+        dom.inputName.value = rsvpState.formData.fullName;
     }
+    if (dom.inputEmail && dom.inputEmail.value !== rsvpState.formData.email) {
+        dom.inputEmail.value = rsvpState.formData.email;
+    }
+
+    if (dom.btnNext1) {
+        const isNameValid = rsvpState.formData.fullName.trim() !== '';
+        const isEmailValid = dom.inputEmail ? dom.inputEmail.checkValidity() : true;
+        dom.btnNext1.disabled = !isNameValid || !isEmailValid;
+    }
+}
+
+function syncStep2UI() {
+    document.querySelectorAll('.attendance-btn').forEach(btn => {
+        const type = btn.getAttribute('data-type');
+        const val = btn.getAttribute('data-val');
+        const stateVal = type === 'wedding' ? rsvpState.formData.attendingWedding : rsvpState.formData.attendingParty;
+        
+        if (stateVal === val) {
+            btn.classList.add('active');
+        } else {
+            btn.classList.remove('active');
+        }
+    });
+
+    if (dom.btnNext2) dom.btnNext2.disabled = !rsvpState.formData.attendingWedding || !rsvpState.formData.attendingParty;
+}
+
+function syncStep3UI() {
+    const dietaryNotes = document.getElementById('rsvpDietary');
+    const messageTxt = document.getElementById('rsvpMessageTxt');
+    if (dietaryNotes && dietaryNotes.value !== rsvpState.formData.dietaryNotes) {
+        dietaryNotes.value = rsvpState.formData.dietaryNotes;
+    }
+    if (messageTxt && messageTxt.value !== rsvpState.formData.message) {
+        messageTxt.value = rsvpState.formData.message;
+    }
+
+    updateStep3Displays();
+    renderGuestInputs('wedding');
+    renderGuestInputs('party');
 }
 
 function updateStep3Displays() {
